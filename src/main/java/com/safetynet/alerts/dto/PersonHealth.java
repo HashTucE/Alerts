@@ -18,6 +18,4 @@ public class PersonHealth {
     private short age;
     private List<String> medications;
     private List<String> allergies;
-
-
 }

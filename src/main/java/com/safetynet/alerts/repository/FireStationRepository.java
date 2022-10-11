@@ -22,7 +22,10 @@ public class FireStationRepository {
     private static Any any = DataReader.jsonReader();
 
 
-
+    
+    /**
+     * @return a list of fire stations containing address and station number
+     */
     public List<FireStation> loadFireStationsList() {
 
 
@@ -40,28 +43,41 @@ public class FireStationRepository {
     }
 
 
-    public FireStation addFireStation(FireStation fireStation) {
+
+    /**
+     * Add a mapping fire station/address
+     * @param fireStation fire station to add
+     */
+    public void addFireStation(FireStation fireStation) {
         if (fireStationsList.stream().anyMatch(f -> f.getAddress().equals(fireStation.getAddress()))) {
             throw new IllegalArgumentException("Fire Station Already Exist !");
         } else {
             fireStationsList.add(fireStation);
             log.info("Fire Station Added !");
-            return fireStation;
         }
     }
 
 
-    public FireStation updateFireStation(FireStation fireStation) {
+
+    /**
+     * update the fire station number of an address
+     * @param fireStation fire station to update
+     */
+    public void updateFireStation(FireStation fireStation) {
         FireStation updateFireStation = fireStationsList.stream()
                 .filter(f -> f.getAddress().equals(fireStation.getAddress()))
                 .findAny().orElseThrow(() -> new IllegalArgumentException("Fire Station not found !"));
 
         fireStationsList.set(fireStationsList.indexOf(updateFireStation), fireStation);
         log.info("Fire Station modified !");
-        return fireStation;
     }
 
 
+
+    /**
+     * delete the mapping of a fire station or an address
+     * @param fireStation fire station to delete
+     */
     public void deleteFireStation(FireStation fireStation) {
         FireStation deleteFireStation = fireStationsList.stream()
                 .filter(f -> f.getAddress().equals(fireStation.getAddress()))
@@ -70,6 +86,7 @@ public class FireStationRepository {
         fireStationsList.remove(deleteFireStation);
         log.info("Fire Station deleted !");
     }
+
 
 
     public List<FireStation> findAll() {

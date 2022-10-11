@@ -8,6 +8,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.file.Files;
 
@@ -31,7 +32,8 @@ public class DataReader {
             jsonIterator.close();
             log.debug("Json file loaded");
         } catch (IOException e) {
-            log.error("IO Exception when trying to read the Json file");
+            log.error("Json file not loaded");
+            e.printStackTrace();
         }
         return any;
     }

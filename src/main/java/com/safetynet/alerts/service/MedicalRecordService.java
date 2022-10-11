@@ -8,19 +8,13 @@ public interface MedicalRecordService {
 
 
 
-    MedicalRecord addMedicalRecord(MedicalRecord medicalRecord);
+    void addMedicalRecord(MedicalRecord medicalRecord);
 
-    MedicalRecord updateMedicalRecord(MedicalRecord medicalRecord);
+    void updateMedicalRecord(MedicalRecord medicalRecord);
 
     void deleteMedicalRecord(MedicalRecord medicalRecord);
 
 
 
     List<MedicalRecord> findAll();
-
-//    List<String> findAllergiesByName(String firstName, String lastName);
-
-//    List<String>findMedicationsByName(String firstName, String lastName);
-
-
 }

@@ -41,6 +41,9 @@ public class SpecificServiceImpl implements SpecificService{
 
 
 
+    /**
+     * @return a list of persons info containing fistName, lastName, address, age, email and medical records
+     */
     public List<PersonInfo> loadPersonInfoList() {
 
         List<PersonInfo> personInfoList = new ArrayList<>();
@@ -151,7 +154,7 @@ public class SpecificServiceImpl implements SpecificService{
         Integer station = fireStationService.findStationNumberByAddress(address);
         return new FireCoverageByAddress(station, personHealthList);
     }
-    
+
 
 
     @Override

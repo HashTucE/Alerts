@@ -15,10 +15,7 @@ public class FireStationController {
     private static final Logger log = LogManager.getLogger(FireStationController.class);
 
     @Autowired
-    private final FireStationService fireStationService;
-   FireStationController(FireStationService fireStationService) {
-       this.fireStationService = fireStationService;
-   }
+    private FireStationService fireStationService;
 
 
     /*
@@ -26,8 +23,8 @@ public class FireStationController {
      */
     @PostMapping("/firestation")
     public void addFireStation(@RequestBody FireStation fireStation) {
-        fireStationService.addFireStation(fireStation);
         log.debug("Object created successfully. Returning status 201. (Ok)");
+        fireStationService.addFireStation(fireStation);
     }
 
     /*
@@ -35,8 +32,8 @@ public class FireStationController {
      */
     @PutMapping("/firestation")
     public void updateFireStation(@RequestBody FireStation fireStation) {
-        fireStationService.updateFireStation(fireStation);
         log.debug("Object updated successfully. Returning status 200 (Ok).");
+        fireStationService.updateFireStation(fireStation);
     }
 
     /*
@@ -56,48 +53,4 @@ public class FireStationController {
         log.debug("Object founded successfully. Returning status 200 (Ok).");
         return fireStationService.findAllFireStations();
     }
-
-
-//    /*
-//     * @return a list of people covered by the corresponding fire station.
-//     * List contains: names, address, telephone number.
-//     * provides a count of the number of adults and the number of children (<= 18) in the service area.
-//     */
-//    @GetMapping("/firestation")
-//    public PersonsCoverageStation firestationNumber() {
-//
-//    }
-//
-//    /*
-//     * @return a list of phone numbers of residents served by the fire station.
-//     * Used to send emergency text messages to specific households.
-//     */
-//    @GetMapping("/phoneAlert")
-//    public List<String> phoneAlert() {
-//
-//    }
-//
-//
-//    /*
-//     * @return the list of inhabitants living at the given address and the number of the fire station serving it.
-//     * List contains: names, phone number, age, and medical history (medications, dosages, and allergies).
-//     */
-//    @GetMapping("/fire")
-//    public List<FireCase> fire() {
-//
-//    }
-//
-//
-//    /*
-//     * @return a list of all households (group people by address) served by the fire station.
-//     * List contains: names, phone number, age, and medical history alongside.
-//     */
-//    @GetMapping("/flood/stations")
-//    public List<FloodCase> flood() {
-//
-//    }
-
-
-
-
 }

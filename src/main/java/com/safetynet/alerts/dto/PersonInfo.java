@@ -18,5 +18,4 @@ public class PersonInfo {
     private String email;
     private List<String> medications;
     private List<String> allergies;
-
 }

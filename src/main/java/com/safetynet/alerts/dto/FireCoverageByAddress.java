@@ -13,8 +13,4 @@ public class FireCoverageByAddress {
 
     private Integer station;
     private List<PersonHealth> personsHealthList;
-
-    public FireCoverageByAddress(List<PersonHealth> personsHealthList) {
-        this.personsHealthList = personsHealthList;
-    }
 }

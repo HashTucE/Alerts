@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class FireStationServiceImpl implements FireStationService {
@@ -25,15 +24,15 @@ public class FireStationServiceImpl implements FireStationService {
 
 
     @Override
-    public FireStation addFireStation(FireStation fireStation) {
+    public void addFireStation(FireStation fireStation) {
         log.debug("addFireStation() from repository called !");
-        return fireStationRepository.addFireStation(fireStation);
+        fireStationRepository.addFireStation(fireStation);
     }
 
     @Override
-    public FireStation updateFireStation(FireStation fireStation) {
+    public void updateFireStation(FireStation fireStation) {
         log.debug("updateFireStation() from repository called !");
-        return fireStationRepository.updateFireStation(fireStation);
+        fireStationRepository.updateFireStation(fireStation);
     }
 
     @Override
@@ -51,7 +50,7 @@ public class FireStationServiceImpl implements FireStationService {
 
     @Override
     public List<String> findFireStationAddressesByNumber(Integer fireStationNumber) {
-//        List<FireStation> fireStationsList = fireStationRepository.loadFireStationsList();
+//
         List<String> addressesList = new ArrayList<>();
         for (FireStation fireStation : fireStationsList) {
             if (fireStation.getStation().equals((fireStationNumber))) addressesList.add(fireStation.getAddress());
@@ -77,7 +76,6 @@ public class FireStationServiceImpl implements FireStationService {
         Integer station = 0;
         for (FireStation fireStation : fireStationsList) {
             station = Integer.valueOf(fireStation.getStation());
-//            if (fireStation.getAddress().equals(address)) ;
         }
         return station;
     }

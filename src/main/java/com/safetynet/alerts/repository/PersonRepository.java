@@ -25,7 +25,9 @@ public class PersonRepository {
     private static Any any = DataReader.jsonReader();
 
 
-
+    /**
+     * @return a list of persons containing fistName, lastName, address, city, zip, phone and email
+     */
     public List<Person> loadPersonsList() {
 
 
@@ -48,39 +50,43 @@ public class PersonRepository {
     }
 
 
-    // CRUD
+    /**
+     * add a new person
+     * @param person person to add
+     */
+    public void addPerson(Person person) {
 
-    public Person addPerson(Person person) {
         if (personsList.stream().anyMatch(eachP -> eachP.getFirstName().equals(person.getFirstName())
                 && eachP.getLastName().equals(person.getLastName()))) {
             throw new IllegalArgumentException("Person not found !");
         } else {
             personsList.add(person);
             log.info("Person added");
-            return person;
         }
     }
 
 
-    public Person findPerson(String firstName, String lastName) {
-        return personsList.stream().filter(eachP -> eachP.getFirstName().equals(firstName)
-                        && eachP.getLastName().equals(lastName))
-                .findAny().orElseThrow(() -> new IllegalArgumentException("Person not found !"));
-    }
+    /**
+     * update an existing person (all fields except names can be modified)
+     * @param person person to update
+     */
+    public void updatePerson(Person person) {
 
-
-    public Person updatePerson(Person person) {
         Person updatePerson = personsList.stream()
                 .filter(p -> p.getFirstName().equals(person.getFirstName())
                         && p.getLastName().equals(person.getLastName()))
                 .findAny().orElseThrow(() -> new IllegalArgumentException("Person not found !"));
         personsList.set(personsList.indexOf(updatePerson), person);
         log.info("Person updated");
-        return person;
     }
 
 
+    /**
+     * remove a person (use first and last name as an identifier unique)
+     * @param person person to delete
+     */
     public void deletePerson(Person person) {
+
         Person deletePerson = personsList.stream()
                 .filter(eachP -> eachP.getFirstName().equals(person.getFirstName())
                         && eachP.getLastName().equals(person.getLastName()))
@@ -90,40 +96,19 @@ public class PersonRepository {
     }
 
 
-    // FIND
+
+    public Person findPerson(String firstName, String lastName) {
+
+        return personsList.stream().filter(eachP -> eachP.getFirstName().equals(firstName)
+                        && eachP.getLastName().equals(lastName))
+                .findAny().orElseThrow(() -> new IllegalArgumentException("Person not found !"));
+    }
+
+
 
     public List<Person> findAllPersons() {
         return personsList;
     }
 
-
-//    public List<Person> findAllPersonsByAddress(String address) {
-//        List<Person> listByAddress = new ArrayList<>();
-//        for (Person person : personsList) {
-//            if (person.getAddress().equals((address))) listByAddress.add(person);
-//        }
-//        log.debug("Persons found by address");
-//        return listByAddress;
-//    }
-//
-//
-//    public List<Person> findAllPersonsByCity(String city) {
-//        List<Person> listByCity = new ArrayList<>();
-//        for (Person person : personsList) {
-//            if (city.equals(person.getCity())) listByCity.add(person);
-//        }
-//        log.debug("Persons found by city");
-//        return listByCity;
-//    }
-
-//    public List<String> findAllEmailsByCity(String city) {
-//        List<String> emailListByCity = new ArrayList<>();
-//        for (Person person : personsList) {
-//            if (city.equals(person.getCity())) emailListByCity.add(person.getEmail());
-//        }
-//        List<String> listWithoutDuplication = emailListByCity.stream().distinct().collect(Collectors.toList());
-//        log.debug("Emails found by city");
-//        return listWithoutDuplication;
-//    }
 }
 

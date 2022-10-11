@@ -25,7 +25,10 @@ public class MedicalRecordRepository {
     private static Any any = DataReader.jsonReader();
 
 
-
+    /**
+     * @return a list of medical records containing fistName, lastName, birthdate,
+     * a list of medications and a list of allergies
+     */
     public List<MedicalRecord> loadMedicalRecordsList() {
 
 
@@ -45,8 +48,11 @@ public class MedicalRecordRepository {
     }
 
 
-
-    public MedicalRecord addMedicalRecord(MedicalRecord medicalRecord) {
+    /**
+     * Add a medical record
+     * @param medicalRecord medical record to add
+     */
+    public void addMedicalRecord(MedicalRecord medicalRecord) {
         if (medicalRecordsList.stream()
                 .anyMatch(m -> m.getFirstName().equals(medicalRecord.getFirstName())
                 && m.getLastName().equals(medicalRecord.getLastName()))) {
@@ -54,22 +60,28 @@ public class MedicalRecordRepository {
         }else {
             medicalRecordsList.add(medicalRecord);
             log.info("Medical Record added !");
-            return medicalRecord;
         }
     }
 
 
-    public MedicalRecord updateMedicalRecord(MedicalRecord medicalRecord) {
+    /**
+     * Update an existing medical record (all fields except names can be modified)
+     * @param medicalRecord medical record to update
+     */
+    public void updateMedicalRecord(MedicalRecord medicalRecord) {
         MedicalRecord updateMedicalRecord = medicalRecordsList.stream()
                 .filter(m -> m.getFirstName().equals(medicalRecord.getFirstName())
                         && m.getLastName().equals(medicalRecord.getLastName()))
                 .findAny().orElseThrow(()-> new IllegalArgumentException("Medical Record not found !"));
         medicalRecordsList.set(medicalRecordsList.indexOf(updateMedicalRecord),medicalRecord);
         log.info("Medical Record updated !");
-        return medicalRecord;
     }
 
 
+    /**
+     * Remove a medical record (use first and last name as an identifier unique)
+     * @param medicalRecord medical record to delete
+     */
     public void deleteMedicalRecord(MedicalRecord medicalRecord) {
         MedicalRecord deleteMedicalRecord = medicalRecordsList.stream()
                 .filter(m -> m.getFirstName().equals(medicalRecord.getFirstName())
@@ -80,22 +92,22 @@ public class MedicalRecordRepository {
     }
 
 
-
-
+    /**
+     * Find the full medical records list
+     * @return a list medical records
+     */
     public List<MedicalRecord> findAll() {
         log.info("Medical Records loaded !");
         return medicalRecordsList;
     }
 
 
-    public MedicalRecord findMedicalRecordByName(String firstName, String lastName) {
-        return  medicalRecordsList.stream()
-                .filter(person -> person.getFirstName().equals(firstName)
-                        && person.getLastName().equals(lastName))
-                .findAny().orElseThrow(()-> new IllegalArgumentException("Medical Record not found !"));
-    }
-
-
+    /**
+     * Find a medications list from first name and last name
+     * @param firstName first name
+     * @param lastName last name
+     * @return a list of medications
+     */
     public List<String> findMedicationsByName(String firstName, String lastName) {
         for (MedicalRecord medicalRecord : medicalRecordsList) {
             if (medicalRecord.getFirstName().equals(firstName)
@@ -109,6 +121,12 @@ public class MedicalRecordRepository {
     }
 
 
+    /**
+     * Find an allergies list from first name and last name
+     * @param firstName first name
+     * @param lastName last name
+     * @return a list of allergies
+     */
     public List<String> findAllergiesByName(String firstName, String lastName) {
         for (MedicalRecord medicalRecord : medicalRecordsList) {
             if (medicalRecord.getFirstName().equals(firstName)

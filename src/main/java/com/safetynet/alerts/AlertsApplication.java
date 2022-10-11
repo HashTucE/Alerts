@@ -1,5 +1,6 @@
 package com.safetynet.alerts;
 
+import com.safetynet.alerts.repository.MedicalRecordRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -24,5 +25,7 @@ public class AlertsApplication implements CommandLineRunner {
 		System.out.println(" :: API ::                                                             (v1.0.0)");
 		System.out.println(" ");
 
+//		MedicalRecordRepository mr = new MedicalRecordRepository();
+//		System.out.println(mr.findMedicationsByName("John", "Boyd"));
 	}
 }

@@ -21,5 +21,4 @@ public class Resident {
     private short age;
     private List<String> medications;
     private List<String> allergies;
-
 }

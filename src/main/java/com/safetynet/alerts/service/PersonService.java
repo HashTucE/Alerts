@@ -7,12 +7,12 @@ import java.util.List;
 public interface PersonService {
 
 
-    Person addPerson(Person person);
 
-    Person updatePerson(Person person);
+    void addPerson(Person person);
+
+    void updatePerson(Person person);
 
     void deletePerson(Person person);
-
 
     Person findPerson(String firstName, String lastName);
 

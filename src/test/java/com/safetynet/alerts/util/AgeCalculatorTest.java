@@ -5,70 +5,43 @@ import org.junit.jupiter.api.Test;
 
 import java.time.format.DateTimeParseException;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class AgeCalculatorTest {
 
-//
-//    @Test
-//    @DisplayName("Should throw an exception when the birthdate is invalid")
-//    void calculateAgeWhenBirthdateIsInvalidThenThrowException() {
-//
-//        String birthdate = "01/01/200";
-//
-//        assertThrows(DateTimeParseException.class, () -> AgeCalculator.calculateAgeFromBirthdate(birthdate));
-//    }
-//
-//
-//    @Test
-//    @DisplayName("Should return the correct age when the birthdate is valid")
-//    void calculateAgeWhenBirthdateIsValid() {
-//
-//        String birthdate = "01/01/2000";
-//
-//        short age = AgeCalculator.calculateAgeFromBirthdate(birthdate);
-//
-//        assertEquals(22, age);
-//    }
+    @Test
+    @DisplayName("Should throw an exception when the birthdate is invalid")
+    void calculateAgeFromBirthdateWhenBirthdateIsInvalidThenThrowException() {
+        AgeCalculator ageCalculator = new AgeCalculator();
+        assertThrows(
+                DateTimeParseException.class,
+                () -> ageCalculator.calculateAgeFromBirthdate("12/12/12"));
+    }
 
-//
-//    @Test
-//    @DisplayName("Should return true when the person is a child")
-//    void estimateChildWhenPersonIsAChildThenReturnTrue() {
-//
-//        Person person =
-//                new Person(
-//                        "John",
-//                        "Doe",
-//                        "Main Street",
-//                        "New York",
-//                        "12345",
-//                        "123456789",
-//                        "john.doe@gmail.com",
-//                        new MedicalRecord("01/01/2010"));
-//
-//        boolean result = ChildEstimator.estimateChild(person);
-//
-//        assertTrue(result);
-//    }
-//
-//
-//    @Test
-//    @DisplayName("Should return false when the person is not a child")
-//    void estimateChildWhenPersonIsNotAChildThenReturnFalse() {
-//        Person person =
-//                new Person(
-//                        "John",
-//                        "Doe",
-//                        "Main Street",
-//                        "New York",
-//                        "12345",
-//                        "123456789",
-//                        "john.doe@gmail.com",
-//                        new MedicalRecord("01/01/2000"));
-//        boolean result = ChildEstimator.estimateChild(person);
-//        assertFalse(result);
-//    }
+    @Test
+    @DisplayName("Should return the age when the birthdate is valid")
+    void calculateAgeFromBirthdateWhenBirthdateIsValid() {
+        String birthdate = "01/01/2000";
+        AgeCalculator ageCalculator = new AgeCalculator();
+        short age = ageCalculator.calculateAgeFromBirthdate(birthdate);
+        assertEquals(22, age);
+    }
 
+    @Test
+    @DisplayName("Should throw an exception when the person does not exist")
+    void calculateAgeFromNameWhenPersonDoesNotExistThenThrowException() {
+        AgeCalculator ageCalculator = new AgeCalculator();
+        assertThrows(
+                IllegalArgumentException.class,
+                () -> ageCalculator.calculateAgeFromName("John", "Doe"));
+    }
 
+    @Test
+    @DisplayName("Should return the age when the person exists")
+    void calculateAgeFromNameWhenPersonExists() {
+        AgeCalculator ageCalculator = new AgeCalculator();
+        short age = ageCalculator.calculateAgeFromName("John", "Boyd");
+        assertEquals(38, age);
+    }
 }

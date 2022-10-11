@@ -26,24 +26,23 @@ public class PersonServiceImpl implements PersonService {
     AgeCalculator ageCalculator = new AgeCalculator();
 
 
-
-
-
     private static final Logger log = LogManager.getLogger(PersonServiceImpl.class);
 
 
 
     @Override
-    public Person addPerson(Person person) {
+    public void addPerson(Person person) {
         log.debug("addPerson() from repository called !");
-        return personRepository.addPerson(person);
+        personRepository.addPerson(person);
     }
 
+
     @Override
-    public Person updatePerson(Person person) {
+    public void updatePerson(Person person) {
         log.debug("updatePerson() from repository called !");
-        return personRepository.updatePerson(person);
+        personRepository.updatePerson(person);
     }
+
 
     @Override
     public void deletePerson(Person person) {
@@ -52,13 +51,11 @@ public class PersonServiceImpl implements PersonService {
     }
 
 
-
     @Override
     public Person findPerson(String firstName, String lastName){
         log.debug("findPerson() from repository called !");
         return personRepository.findPerson(firstName,lastName);
     }
-
 
 
     @Override

@@ -7,9 +7,9 @@ import java.util.List;
 public interface FireStationService {
 
 
-    FireStation addFireStation(FireStation firestation);
+    void addFireStation(FireStation firestation);
 
-    FireStation updateFireStation(FireStation firestation);
+    void updateFireStation(FireStation firestation);
 
     void deleteFireStation(FireStation firestation);
 

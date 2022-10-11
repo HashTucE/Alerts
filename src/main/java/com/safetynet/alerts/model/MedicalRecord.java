@@ -17,17 +17,4 @@ public class MedicalRecord {
     private List<String> medications;
     private List<String> allergies;
 
-
-    public MedicalRecord(final String birthdate,
-                         final List<String> medication,
-                         final List<String> allergies) {
-        this.birthdate = birthdate;
-        this.medications = medication;
-        this.allergies = allergies;
-    }
-
-    public MedicalRecord(final String birthdate) {
-        this.birthdate = birthdate;
-    }
-
 }

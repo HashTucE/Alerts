@@ -65,6 +65,4 @@ public class SpecificController {
         log.debug("Object founded successfully. Returning status 200 (Ok).");
         return specificService.findAllEmailsByCity(city);
     }
-
-
 }

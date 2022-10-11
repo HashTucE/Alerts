@@ -21,15 +21,15 @@ public class MedicalRecordServiceImpl implements MedicalRecordService {
 
 
     @Override
-    public MedicalRecord addMedicalRecord(MedicalRecord medicalRecord) {
+    public void addMedicalRecord(MedicalRecord medicalRecord) {
         log.debug("addMedicalRecord() from repository called !");
-        return medicalRecordRepository.addMedicalRecord(medicalRecord);
+        medicalRecordRepository.addMedicalRecord(medicalRecord);
     }
 
     @Override
-    public MedicalRecord updateMedicalRecord(MedicalRecord medicalRecord) {
+    public void updateMedicalRecord(MedicalRecord medicalRecord) {
         log.debug("updateMedicalRecord() from repository called !");
-        return medicalRecordRepository.updateMedicalRecord(medicalRecord);
+        medicalRecordRepository.updateMedicalRecord(medicalRecord);
     }
 
     @Override
