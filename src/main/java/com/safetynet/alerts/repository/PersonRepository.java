@@ -45,7 +45,7 @@ public class PersonRepository {
             person.setEmail(String.valueOf(element.get("email")));
             personsList.add(person);
         }
-        log.debug("Persons loaded");
+        log.debug("Persons list loaded");
         return personsList;
     }
 
@@ -56,9 +56,11 @@ public class PersonRepository {
      */
     public void addPerson(Person person) {
 
-        if (personsList.stream().anyMatch(eachP -> eachP.getFirstName().equals(person.getFirstName())
-                && eachP.getLastName().equals(person.getLastName()))) {
-            throw new IllegalArgumentException("Person not found !");
+        if (personsList
+                .stream()
+                .anyMatch(p -> p.getFirstName().equals(person.getFirstName()) && p.getLastName().equals(person.getLastName()))) {
+            log.info("Person already exist !");
+            throw new IllegalArgumentException("Person already exist !");
         } else {
             personsList.add(person);
             log.info("Person added");
@@ -72,9 +74,9 @@ public class PersonRepository {
      */
     public void updatePerson(Person person) {
 
-        Person updatePerson = personsList.stream()
-                .filter(p -> p.getFirstName().equals(person.getFirstName())
-                        && p.getLastName().equals(person.getLastName()))
+        Person updatePerson = personsList
+                .stream()
+                .filter(p -> p.getFirstName().equals(person.getFirstName()) && p.getLastName().equals(person.getLastName()))
                 .findAny().orElseThrow(() -> new IllegalArgumentException("Person not found !"));
         personsList.set(personsList.indexOf(updatePerson), person);
         log.info("Person updated");
@@ -87,9 +89,9 @@ public class PersonRepository {
      */
     public void deletePerson(Person person) {
 
-        Person deletePerson = personsList.stream()
-                .filter(eachP -> eachP.getFirstName().equals(person.getFirstName())
-                        && eachP.getLastName().equals(person.getLastName()))
+        Person deletePerson = personsList
+                .stream()
+                .filter(p -> p.getFirstName().equals(person.getFirstName()) && p.getLastName().equals(person.getLastName()))
                 .findAny().orElseThrow(() -> new IllegalArgumentException("Person not found !"));
         personsList.remove(deletePerson);
         log.info("Person deleted");
@@ -99,8 +101,9 @@ public class PersonRepository {
 
     public Person findPerson(String firstName, String lastName) {
 
-        return personsList.stream().filter(eachP -> eachP.getFirstName().equals(firstName)
-                        && eachP.getLastName().equals(lastName))
+        return personsList
+                .stream()
+                .filter(p -> p.getFirstName().equals(firstName) && p.getLastName().equals(lastName))
                 .findAny().orElseThrow(() -> new IllegalArgumentException("Person not found !"));
     }
 

@@ -1,0 +1,75 @@
+[INFO ] 11 oct. 2022 14:18:30 [main] AlertsApplication - Starting AlertsApplication using Java 11.0.15 on imac.home with PID 8139 (/Users/hashtuce/Library/Mobile Documents/com~apple~CloudDocs/Projets/Projet 5/Application/alerts/target/classes started by hashtuce in /Users/hashtuce/Library/Mobile Documents/com~apple~CloudDocs/Projets/Projet 5/Application/alerts)
+[DEBUG] 11 oct. 2022 14:18:30 [main] AlertsApplication - Running with Spring Boot v2.7.4, Spring v5.3.23
+[INFO ] 11 oct. 2022 14:18:30 [main] AlertsApplication - The following 1 profile is active: "default"
+[DEBUG] 11 oct. 2022 14:18:31 [main] DataReader - Json file loaded
+[DEBUG] 11 oct. 2022 14:18:31 [main] FireStationRepository - Fire stations loaded
+[DEBUG] 11 oct. 2022 14:18:31 [main] FireStationRepository - Fire stations loaded
+[DEBUG] 11 oct. 2022 14:18:31 [main] FireStationRepository - Fire stations loaded
+[DEBUG] 11 oct. 2022 14:18:31 [main] DataReader - Json file loaded
+[DEBUG] 11 oct. 2022 14:18:31 [main] MedicalRecordRepository - Medical records loaded
+[DEBUG] 11 oct. 2022 14:18:31 [main] DataReader - Json file loaded
+[DEBUG] 11 oct. 2022 14:18:31 [main] PersonRepository - Persons loaded
+[DEBUG] 11 oct. 2022 14:18:31 [main] MedicalRecordRepository - Medical records loaded
+[DEBUG] 11 oct. 2022 14:18:31 [main] PersonRepository - Persons loaded
+[DEBUG] 11 oct. 2022 14:18:31 [main] PersonRepository - Persons loaded
+[DEBUG] 11 oct. 2022 14:18:31 [main] MedicalRecordRepository - Medical records loaded
+[DEBUG] 11 oct. 2022 14:18:31 [main] FireStationRepository - Fire stations loaded
+[DEBUG] 11 oct. 2022 14:18:31 [main] FireStationRepository - Fire stations loaded
+[DEBUG] 11 oct. 2022 14:18:31 [main] PersonRepository - Persons loaded
+[INFO ] 11 oct. 2022 14:18:32 [main] AlertsApplication - Started AlertsApplication in 2.287 seconds (JVM running for 13.059)
+[DEBUG] 11 oct. 2022 14:18:32 [main] MedicalRecordRepository - Medical records loaded
+[DEBUG] 11 oct. 2022 14:18:32 [main] MedicalRecordRepository - Medications found forJohnBoyd
+[INFO ] 11 oct. 2022 14:24:42 [main] AlertsApplication - Starting AlertsApplication using Java 11.0.15 on imac.home with PID 8212 (/Users/hashtuce/Library/Mobile Documents/com~apple~CloudDocs/Projets/Projet 5/Application/alerts/target/classes started by hashtuce in /Users/hashtuce/Library/Mobile Documents/com~apple~CloudDocs/Projets/Projet 5/Application/alerts)
+[DEBUG] 11 oct. 2022 14:24:42 [main] AlertsApplication - Running with Spring Boot v2.7.4, Spring v5.3.23
+[INFO ] 11 oct. 2022 14:24:42 [main] AlertsApplication - The following 1 profile is active: "default"
+[DEBUG] 11 oct. 2022 14:24:43 [main] DataReader - Json file loaded
+[DEBUG] 11 oct. 2022 14:24:43 [main] FireStationRepository - Fire stations loaded
+[DEBUG] 11 oct. 2022 14:24:43 [main] FireStationRepository - Fire stations loaded
+[DEBUG] 11 oct. 2022 14:24:43 [main] FireStationRepository - Fire stations loaded
+[DEBUG] 11 oct. 2022 14:24:43 [main] DataReader - Json file loaded
+[DEBUG] 11 oct. 2022 14:24:43 [main] MedicalRecordRepository - Medical records loaded
+[DEBUG] 11 oct. 2022 14:24:43 [main] DataReader - Json file loaded
+[DEBUG] 11 oct. 2022 14:24:43 [main] PersonRepository - Persons loaded
+[DEBUG] 11 oct. 2022 14:24:43 [main] MedicalRecordRepository - Medical records loaded
+[DEBUG] 11 oct. 2022 14:24:43 [main] PersonRepository - Persons loaded
+[DEBUG] 11 oct. 2022 14:24:43 [main] PersonRepository - Persons loaded
+[DEBUG] 11 oct. 2022 14:24:43 [main] MedicalRecordRepository - Medical records loaded
+[DEBUG] 11 oct. 2022 14:24:43 [main] FireStationRepository - Fire stations loaded
+[DEBUG] 11 oct. 2022 14:24:43 [main] FireStationRepository - Fire stations loaded
+[DEBUG] 11 oct. 2022 14:24:43 [main] PersonRepository - Persons loaded
+[INFO ] 11 oct. 2022 14:24:44 [main] AlertsApplication - Started AlertsApplication in 2.033 seconds (JVM running for 12.834)
+[DEBUG] 11 oct. 2022 14:24:44 [main] MedicalRecordRepository - Medical records loaded
+[DEBUG] 11 oct. 2022 14:24:44 [main] MedicalRecordRepository - Medications found forJohnBoyd
+[INFO ] 11 oct. 2022 14:31:14 [main] AlertsApplication - Starting AlertsApplication using Java 11.0.15 on imac.home with PID 8277 (/Users/hashtuce/Library/Mobile Documents/com~apple~CloudDocs/Projets/Projet 5/Application/alerts/target/classes started by hashtuce in /Users/hashtuce/Library/Mobile Documents/com~apple~CloudDocs/Projets/Projet 5/Application/alerts)
+[DEBUG] 11 oct. 2022 14:31:14 [main] AlertsApplication - Running with Spring Boot v2.7.4, Spring v5.3.23
+[INFO ] 11 oct. 2022 14:31:14 [main] AlertsApplication - The following 1 profile is active: "default"
+[DEBUG] 11 oct. 2022 14:31:15 [main] DataReader - Json file loaded
+[DEBUG] 11 oct. 2022 14:31:15 [main] FireStationRepository - Fire stations list loaded
+[DEBUG] 11 oct. 2022 14:31:15 [main] FireStationRepository - Fire stations list loaded
+[DEBUG] 11 oct. 2022 14:31:15 [main] FireStationRepository - Fire stations list loaded
+[DEBUG] 11 oct. 2022 14:31:15 [main] DataReader - Json file loaded
+[DEBUG] 11 oct. 2022 14:31:15 [main] MedicalRecordRepository - Medical records loaded
+[DEBUG] 11 oct. 2022 14:31:15 [main] DataReader - Json file loaded
+[DEBUG] 11 oct. 2022 14:31:15 [main] PersonRepository - Persons loaded
+[DEBUG] 11 oct. 2022 14:31:15 [main] MedicalRecordRepository - Medical records loaded
+[DEBUG] 11 oct. 2022 14:31:15 [main] PersonRepository - Persons loaded
+[DEBUG] 11 oct. 2022 14:31:15 [main] PersonRepository - Persons loaded
+[DEBUG] 11 oct. 2022 14:31:15 [main] MedicalRecordRepository - Medical records loaded
+[DEBUG] 11 oct. 2022 14:31:15 [main] FireStationRepository - Fire stations list loaded
+[DEBUG] 11 oct. 2022 14:31:15 [main] FireStationRepository - Fire stations list loaded
+[DEBUG] 11 oct. 2022 14:31:15 [main] PersonRepository - Persons loaded
+[INFO ] 11 oct. 2022 14:31:16 [main] AlertsApplication - Started AlertsApplication in 2.222 seconds (JVM running for 12.995)
+[DEBUG] 11 oct. 2022 14:31:16 [main] MedicalRecordRepository - Medical records loaded
+[DEBUG] 11 oct. 2022 14:31:16 [main] MedicalRecordRepository - Medications found forJohnBoyd
+[DEBUG] 11 oct. 2022 14:33:22 [main] DataReader - Json file loaded
+[DEBUG] 11 oct. 2022 14:33:22 [main] MedicalRecordRepository - Medical records loaded
+[DEBUG] 11 oct. 2022 14:33:22 [main] MedicalRecordRepository - Medical records loaded
+[DEBUG] 11 oct. 2022 14:33:22 [main] PersonServiceImpl - Age from name calculated !
+[DEBUG] 11 oct. 2022 14:33:22 [main] MedicalRecordRepository - Medical records loaded
+[DEBUG] 11 oct. 2022 14:33:22 [main] MedicalRecordRepository - Medical records loaded
+[DEBUG] 11 oct. 2022 14:34:36 [main] DataReader - Json file loaded
+[DEBUG] 11 oct. 2022 14:34:36 [main] MedicalRecordRepository - Medical records list loaded
+[DEBUG] 11 oct. 2022 14:34:36 [main] MedicalRecordRepository - Medical records list loaded
+[DEBUG] 11 oct. 2022 14:34:36 [main] PersonServiceImpl - Age from name calculated !
+[DEBUG] 11 oct. 2022 14:34:36 [main] MedicalRecordRepository - Medical records list loaded
+[DEBUG] 11 oct. 2022 14:34:36 [main] MedicalRecordRepository - Medical records list loaded

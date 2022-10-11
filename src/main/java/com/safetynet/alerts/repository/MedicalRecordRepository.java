@@ -43,7 +43,7 @@ public class MedicalRecordRepository {
             medicalRecord.setAllergies(Collections.singletonList(String.valueOf(element.get("allergies"))));
             medicalRecordsList.add(medicalRecord);
         }
-        log.debug("Medical records loaded");
+        log.debug("Medical records list loaded");
         return medicalRecordsList;
     }
 
@@ -53,13 +53,13 @@ public class MedicalRecordRepository {
      * @param medicalRecord medical record to add
      */
     public void addMedicalRecord(MedicalRecord medicalRecord) {
-        if (medicalRecordsList.stream()
-                .anyMatch(m -> m.getFirstName().equals(medicalRecord.getFirstName())
-                && m.getLastName().equals(medicalRecord.getLastName()))) {
+        if (medicalRecordsList
+                .stream()
+                .anyMatch(m -> m.getFirstName().equals(medicalRecord.getFirstName()) && m.getLastName().equals(medicalRecord.getLastName()))) {
             throw new IllegalArgumentException("The value is already in the list.");
         }else {
             medicalRecordsList.add(medicalRecord);
-            log.info("Medical Record added !");
+            log.info("Medical Record added");
         }
     }
 
@@ -69,12 +69,13 @@ public class MedicalRecordRepository {
      * @param medicalRecord medical record to update
      */
     public void updateMedicalRecord(MedicalRecord medicalRecord) {
-        MedicalRecord updateMedicalRecord = medicalRecordsList.stream()
-                .filter(m -> m.getFirstName().equals(medicalRecord.getFirstName())
-                        && m.getLastName().equals(medicalRecord.getLastName()))
-                .findAny().orElseThrow(()-> new IllegalArgumentException("Medical Record not found !"));
+        MedicalRecord updateMedicalRecord = medicalRecordsList
+                .stream()
+                .filter(m -> m.getFirstName().equals(medicalRecord.getFirstName()) && m.getLastName().equals(medicalRecord.getLastName()))
+                .findAny()
+                .orElseThrow(()-> new IllegalArgumentException("Medical Record not found !"));
         medicalRecordsList.set(medicalRecordsList.indexOf(updateMedicalRecord),medicalRecord);
-        log.info("Medical Record updated !");
+        log.info("Medical Record updated");
     }
 
 
@@ -83,12 +84,13 @@ public class MedicalRecordRepository {
      * @param medicalRecord medical record to delete
      */
     public void deleteMedicalRecord(MedicalRecord medicalRecord) {
-        MedicalRecord deleteMedicalRecord = medicalRecordsList.stream()
-                .filter(m -> m.getFirstName().equals(medicalRecord.getFirstName())
-                        && m.getLastName().equals(medicalRecord.getLastName()))
-                .findAny().orElseThrow(()-> new IllegalArgumentException("Medical Record not found !"));
+        MedicalRecord deleteMedicalRecord = medicalRecordsList
+                .stream()
+                .filter(m -> m.getFirstName().equals(medicalRecord.getFirstName()) && m.getLastName().equals(medicalRecord.getLastName()))
+                .findAny()
+                .orElseThrow(()-> new IllegalArgumentException("Medical Record not found !"));
         medicalRecordsList.remove(deleteMedicalRecord);
-        log.info("Medical Record deleted !");
+        log.info("Medical Record deleted");
     }
 
 
@@ -97,7 +99,7 @@ public class MedicalRecordRepository {
      * @return a list medical records
      */
     public List<MedicalRecord> findAll() {
-        log.info("Medical Records loaded !");
+        log.info("Medical Records list loaded");
         return medicalRecordsList;
     }
 
@@ -112,11 +114,11 @@ public class MedicalRecordRepository {
         for (MedicalRecord medicalRecord : medicalRecordsList) {
             if (medicalRecord.getFirstName().equals(firstName)
                 && medicalRecord.getLastName().equals(lastName)) {
-                log.debug("Medications found for" + firstName + lastName);
+                log.debug("Medications found for" + firstName +" "+ lastName);
                 return medicalRecord.getMedications();
             }
         }
-        log.debug("Medications not found for" + firstName + lastName);
+        log.debug("Medications not found for" + firstName + " " + lastName);
         return null;
     }
 
@@ -131,11 +133,11 @@ public class MedicalRecordRepository {
         for (MedicalRecord medicalRecord : medicalRecordsList) {
             if (medicalRecord.getFirstName().equals(firstName)
                     && medicalRecord.getLastName().equals(lastName)) {
-                log.debug("Allergies found for" + firstName + lastName);
+                log.debug("Allergies found for" + firstName + " " + lastName);
                 return medicalRecord.getAllergies();
             }
         }
-        log.debug("Allergies not found for" + firstName + lastName);
+        log.debug("Allergies not found for" + firstName + " " + lastName);
         return null;
     }
 }

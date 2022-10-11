@@ -22,7 +22,7 @@ public class FireStationRepository {
     private static Any any = DataReader.jsonReader();
 
 
-    
+
     /**
      * @return a list of fire stations containing address and station number
      */
@@ -38,7 +38,7 @@ public class FireStationRepository {
             fireStation.setStation(Integer.valueOf(String.valueOf(element.get("station"))));
             fireStationsList.add(fireStation);
         }
-        log.debug("Fire stations loaded");
+        log.debug("Fire stations list loaded");
         return fireStationsList;
     }
 
@@ -49,11 +49,13 @@ public class FireStationRepository {
      * @param fireStation fire station to add
      */
     public void addFireStation(FireStation fireStation) {
-        if (fireStationsList.stream().anyMatch(f -> f.getAddress().equals(fireStation.getAddress()))) {
+        if (fireStationsList
+                .stream()
+                .anyMatch(f -> f.getAddress().equals(fireStation.getAddress()))) {
             throw new IllegalArgumentException("Fire Station Already Exist !");
         } else {
             fireStationsList.add(fireStation);
-            log.info("Fire Station Added !");
+            log.info("Fire Station Added");
         }
     }
 
@@ -64,12 +66,14 @@ public class FireStationRepository {
      * @param fireStation fire station to update
      */
     public void updateFireStation(FireStation fireStation) {
-        FireStation updateFireStation = fireStationsList.stream()
+        FireStation updateFireStation = fireStationsList
+                .stream()
                 .filter(f -> f.getAddress().equals(fireStation.getAddress()))
-                .findAny().orElseThrow(() -> new IllegalArgumentException("Fire Station not found !"));
+                .findAny()
+                .orElseThrow(() -> new IllegalArgumentException("Fire Station not found !"));
 
         fireStationsList.set(fireStationsList.indexOf(updateFireStation), fireStation);
-        log.info("Fire Station modified !");
+        log.info("Fire station updated");
     }
 
 
@@ -79,18 +83,20 @@ public class FireStationRepository {
      * @param fireStation fire station to delete
      */
     public void deleteFireStation(FireStation fireStation) {
-        FireStation deleteFireStation = fireStationsList.stream()
+        FireStation deleteFireStation = fireStationsList
+                .stream()
                 .filter(f -> f.getAddress().equals(fireStation.getAddress()))
-                .findAny().orElseThrow(() -> new IllegalArgumentException("Fire Station not found !"));
+                .findAny()
+                .orElseThrow(() -> new IllegalArgumentException("Fire Station not found !"));
 
         fireStationsList.remove(deleteFireStation);
-        log.info("Fire Station deleted !");
+        log.info("Fire station deleted");
     }
 
 
 
     public List<FireStation> findAll() {
-        log.info("Fire Stations loaded !");
+        log.info("Fire stations list loaded");
         return fireStationsList;
     }
 }

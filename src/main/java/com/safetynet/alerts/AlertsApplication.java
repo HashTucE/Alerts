@@ -25,7 +25,7 @@ public class AlertsApplication implements CommandLineRunner {
 		System.out.println(" :: API ::                                                             (v1.0.0)");
 		System.out.println(" ");
 
-//		MedicalRecordRepository mr = new MedicalRecordRepository();
-//		System.out.println(mr.findMedicationsByName("John", "Boyd"));
+		MedicalRecordRepository mr = new MedicalRecordRepository();
+		System.out.println(mr.findMedicationsByName("John", "Boyd"));
 	}
 }
