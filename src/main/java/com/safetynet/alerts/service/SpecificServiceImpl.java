@@ -41,7 +41,7 @@ public class SpecificServiceImpl implements SpecificService{
 
 
 
-    /**
+    /** To personService
      * @return a list of persons info containing fistName, lastName, address, age, email and medical records
      */
     public List<PersonInfo> loadPersonInfoList() {
@@ -64,7 +64,7 @@ public class SpecificServiceImpl implements SpecificService{
     }
 
 
-
+//to personService
     @Override
     public FireCoverageByStation getCoverageListFromStation(Integer station) {
 
@@ -92,7 +92,7 @@ public class SpecificServiceImpl implements SpecificService{
     }
 
 
-
+// to personservice
     @Override
     public ChildByFamily getChildrenListByAddress(String address) {
 
@@ -115,7 +115,7 @@ public class SpecificServiceImpl implements SpecificService{
     }
 
 
-
+// to personservice
     @Override
     public List<String> getPhoneListFromStation(Integer station) {
 
@@ -129,11 +129,14 @@ public class SpecificServiceImpl implements SpecificService{
             }
         }
         log.debug("Phone list generated from station" + station);
-        return phoneList.stream().distinct().collect(Collectors.toList());
+        return phoneList
+                .stream()
+                .distinct()
+                .collect(Collectors.toList());
     }
 
 
-
+    // to personservice
     @Override
     public FireCoverageByAddress getInhabitantsByAddress(String address) {
 
@@ -156,7 +159,7 @@ public class SpecificServiceImpl implements SpecificService{
     }
 
 
-
+    // to personservice
     @Override
     public List<FloodCoverage> getInhabitantsByStation(List<Integer> stations) {
 
@@ -194,7 +197,7 @@ public class SpecificServiceImpl implements SpecificService{
     }
 
 
-
+    // to personservice
     @Override
     public List<PersonInfo> findPersonInfoByName(String firstName, String lastName) {
 
@@ -212,7 +215,7 @@ public class SpecificServiceImpl implements SpecificService{
     }
 
 
-
+    // to personservice
     @Override
     public List<String> findAllEmailsByCity(String city) {
 
@@ -221,6 +224,9 @@ public class SpecificServiceImpl implements SpecificService{
             if (city.equals(person.getCity())) emailListByCity.add(person.getEmail());
         }
         log.debug("Emails found by city");
-        return emailListByCity.stream().distinct().collect(Collectors.toList());
+        return emailListByCity
+                .stream()
+                .distinct()
+                .collect(Collectors.toList());
     }
 }

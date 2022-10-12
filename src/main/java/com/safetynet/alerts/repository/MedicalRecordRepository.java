@@ -39,8 +39,17 @@ public class MedicalRecordRepository {
             medicalRecord.setFirstName(String.valueOf(element.get("firstName")));
             medicalRecord.setLastName(String.valueOf(element.get("lastName")));
             medicalRecord.setBirthdate(String.valueOf(element.get("birthdate")));
-            medicalRecord.setMedications(Collections.singletonList(String.valueOf(element.get("medications"))));
-            medicalRecord.setAllergies(Collections.singletonList(String.valueOf(element.get("allergies"))));
+
+            Any anyMedication = element.get("medications");
+            List<String> medicationsList = new ArrayList<>();
+            for (Any medication : anyMedication) {medicationsList.add(String.valueOf(medication));}
+            medicalRecord.setMedications(medicationsList);
+
+            Any anyAllergy = element.get("allergies");
+            List<String> allergiesList = new ArrayList<>();
+            for (Any allergy : anyAllergy) {allergiesList.add(String.valueOf(allergy));}
+            medicalRecord.setAllergies(allergiesList);
+
             medicalRecordsList.add(medicalRecord);
         }
         log.debug("Medical records list loaded");
