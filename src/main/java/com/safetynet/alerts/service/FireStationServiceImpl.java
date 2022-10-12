@@ -75,7 +75,7 @@ public class FireStationServiceImpl implements FireStationService {
 
         Integer station = 0;
         for (FireStation fireStation : fireStationsList) {
-            station = Integer.valueOf(fireStation.getStation());
+            station = fireStation.getStation();
         }
         return station;
     }

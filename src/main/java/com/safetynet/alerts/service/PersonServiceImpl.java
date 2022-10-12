@@ -246,7 +246,7 @@ public class PersonServiceImpl implements PersonService {
                 personFound.add(personInfo);
             }
         }
-        log.debug("Person info founded for" + firstName + lastName);
+        log.debug("Person info founded for " + firstName + " " + lastName);
         return personFound;
     }
 

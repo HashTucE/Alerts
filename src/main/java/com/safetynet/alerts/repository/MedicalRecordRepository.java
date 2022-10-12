@@ -9,7 +9,6 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 @Repository
