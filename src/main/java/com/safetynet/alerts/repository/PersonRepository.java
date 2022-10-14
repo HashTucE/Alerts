@@ -3,6 +3,7 @@ package com.safetynet.alerts.repository;
 import com.jsoniter.any.Any;
 import com.safetynet.alerts.model.Person;
 import com.safetynet.alerts.util.DataReader;
+import com.safetynet.alerts.util.DataWriter;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.apache.logging.log4j.LogManager;
@@ -20,9 +21,8 @@ public class PersonRepository {
 
     private static final Logger log = LogManager.getLogger(PersonRepository.class);
 
-    private List<Person> personsList = loadPersonsList();
+    private static DataWriter dataWriter = new DataWriter();
 
-    private static Any any = DataReader.jsonReader();
 
 
     /**
@@ -30,7 +30,7 @@ public class PersonRepository {
      */
     public List<Person> loadPersonsList() {
 
-
+        Any any = DataReader.jsonReader();
         Any anyPersons = any.get("persons");
         List<Person> personsList = new ArrayList<>();
 
@@ -45,7 +45,7 @@ public class PersonRepository {
             person.setEmail(String.valueOf(element.get("email")));
             personsList.add(person);
         }
-        log.debug("Persons list loaded");
+        log.debug("Trying to return the person's list");
         return personsList;
     }
 
@@ -56,14 +56,15 @@ public class PersonRepository {
      */
     public void addPerson(Person person) {
 
-        if (personsList
+        if (dataWriter.getPersonList()
                 .stream()
                 .anyMatch(p -> p.getFirstName().equals(person.getFirstName()) && p.getLastName().equals(person.getLastName()))) {
             log.info("Person already exist !");
-            throw new IllegalArgumentException("Person already exist !");
+            throw new IllegalArgumentException("The contact information of " + person.getFirstName() + " " + person.getLastName() + " already exist");
         } else {
-            personsList.add(person);
-            log.info("Person added");
+            dataWriter.getPersonList().add(person);
+            dataWriter.jsonWriter();
+            log.info("Adding the contact information for " + person.getFirstName() + " " + person.getLastName());
         }
     }
 
@@ -74,12 +75,13 @@ public class PersonRepository {
      */
     public void updatePerson(Person person) {
 
-        Person updatePerson = personsList
+        Person updatePerson = dataWriter.getPersonList()
                 .stream()
                 .filter(p -> p.getFirstName().equals(person.getFirstName()) && p.getLastName().equals(person.getLastName()))
-                .findAny().orElseThrow(() -> new IllegalArgumentException("Person not found !"));
-        personsList.set(personsList.indexOf(updatePerson), person);
-        log.info("Person updated");
+                .findAny().orElseThrow(() -> new IllegalArgumentException("The contact information of " + person.getFirstName() + " " + person.getLastName() + " was not found"));
+        dataWriter.getPersonList().set(dataWriter.getPersonList().indexOf(updatePerson), person);
+        dataWriter.jsonWriter();
+        log.info("Updating the contact information for " + person.getFirstName() + " " + person.getLastName());
     }
 
 
@@ -89,19 +91,20 @@ public class PersonRepository {
      */
     public void deletePerson(Person person) {
 
-        Person deletePerson = personsList
+        Person deletePerson = dataWriter.getPersonList()
                 .stream()
                 .filter(p -> p.getFirstName().equals(person.getFirstName()) && p.getLastName().equals(person.getLastName()))
-                .findAny().orElseThrow(() -> new IllegalArgumentException("Person not found !"));
-        personsList.remove(deletePerson);
-        log.info("Person deleted");
+                .findAny().orElseThrow(() -> new IllegalArgumentException("The contact information of " + person.getFirstName() + " " + person.getLastName() + " was not found"));
+        dataWriter.getPersonList().remove(deletePerson);
+        dataWriter.jsonWriter();
+        log.info("Deleting the contact information for " + person.getFirstName() + " " + person.getLastName());
     }
 
 
 
     public Person findPerson(String firstName, String lastName) {
 
-        return personsList
+        return dataWriter.getPersonList()
                 .stream()
                 .filter(p -> p.getFirstName().equals(firstName) && p.getLastName().equals(lastName))
                 .findAny().orElseThrow(() -> new IllegalArgumentException("Person not found !"));
@@ -110,7 +113,7 @@ public class PersonRepository {
 
 
     public List<Person> findAllPersons() {
-        return personsList;
+        return loadPersonsList();
     }
 
 }

@@ -25,9 +25,9 @@ public class AgeCalculator {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
         LocalDate personBirthdate = LocalDate.parse(birthdate, formatter);
         LocalDate currentDate = LocalDate.now();
-
         short age = (short) Period.between(personBirthdate, currentDate).getYears();
 
+        log.debug("Trying to return the age from the birthdate " + birthdate);
         return age;
     }
 
@@ -39,7 +39,7 @@ public class AgeCalculator {
         MedicalRecord medicalRecord = medicalRecordList.stream()
                 .filter(m -> m.getFirstName().equals(firstName) && m.getLastName().equals(lastName))
                 .findAny().orElseThrow(()-> new IllegalArgumentException("not found"));
-        log.debug("Age from name calculated !");
+        log.debug("Trying to return the age of " + firstName + " " + lastName);
         return calculateAgeFromBirthdate(medicalRecord.getBirthdate());
 
     }

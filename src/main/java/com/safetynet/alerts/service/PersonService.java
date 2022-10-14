@@ -9,18 +9,18 @@ public interface PersonService {
 
 
 
-    void addPerson(Person person);
+    Person addPerson(Person person);
 
     void updatePerson(Person person);
 
     void deletePerson(Person person);
 
+
+    //////////
     Person findPerson(String firstName, String lastName);
 
-
-
     List<Person> findAllPersons();
-
+    ///////////
 
 
     //SPECIFIC SERVICES//

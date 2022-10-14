@@ -40,38 +40,41 @@ public class PersonServiceImpl implements PersonService {
 
 
     @Override
-    public void addPerson(Person person) {
-        log.debug("addPerson() from repository called !");
+    public Person addPerson(Person person) {
+        log.debug("addPerson() from repository called");
         personRepository.addPerson(person);
+        return person;
     }
 
 
     @Override
     public void updatePerson(Person person) {
-        log.debug("updatePerson() from repository called !");
+        log.debug("updatePerson() from repository called");
         personRepository.updatePerson(person);
     }
 
 
     @Override
     public void deletePerson(Person person) {
-        log.debug("deletePerson() from repository called !");
+        log.debug("deletePerson() from repository called");
         personRepository.deletePerson(person);
     }
 
 
+
+
+    ///////////
     @Override
     public Person findPerson(String firstName, String lastName){
-        log.debug("findPerson() from repository called !");
+        log.debug("findPerson() from repository called");
         return personRepository.findPerson(firstName,lastName);
     }
-
 
     @Override
     public List<Person> findAllPersons() {
         return personRepository.findAllPersons();
     }
-
+    ///////////
 
 
 
@@ -83,7 +86,6 @@ public class PersonServiceImpl implements PersonService {
     public List<PersonInfo> loadPersonInfoList() {
 
         List<PersonInfo> personInfoList = new ArrayList<>();
-        log.debug("trying to call findPersonInfoByName()");
 
         for (Person person : personsList) {
             personInfoList.add(new PersonInfo(
@@ -95,7 +97,7 @@ public class PersonServiceImpl implements PersonService {
                     medicalRecordRepository.findMedicationsByName(person.getFirstName(), person.getLastName()),
                     medicalRecordRepository.findAllergiesByName(person.getFirstName(), person.getLastName())));
         }
-        log.debug("personInfoList loaded !");
+        log.debug("Trying to return the PersonInfo list");
         return personInfoList;
     }
 
@@ -124,6 +126,7 @@ public class PersonServiceImpl implements PersonService {
                     childrenNumber++;
             }
         }
+        log.debug("Trying to return the FireCoverageByStation for the station number " + station);
         return new FireCoverageByStation(personContactList, adultsNumber, childrenNumber);
     }
 
@@ -145,8 +148,11 @@ public class PersonServiceImpl implements PersonService {
             }
         }
         if (children.size() == 0) {
+            log.error("Return an empty list, there is no child at the " + address + " or the address does not exist");
             return new ChildByFamily(List.of(), List.of());
-        } else { return new ChildByFamily(children, others);
+        } else {
+            log.debug("Trying to return the children list for the address " + address);
+            return new ChildByFamily(children, others);
         }
     }
 
@@ -164,7 +170,7 @@ public class PersonServiceImpl implements PersonService {
                 phoneList.add(person.getPhone());
             }
         }
-        log.debug("Phone list generated from station" + station);
+        log.debug("Trying to return the phone list for the station number " + station);
         return phoneList
                 .stream()
                 .distinct()
@@ -191,6 +197,7 @@ public class PersonServiceImpl implements PersonService {
             }
         }
         Integer station = fireStationService.findStationNumberByAddress(address);
+        log.debug("Trying to return the FireCoverageByAddress for " + address);
         return new FireCoverageByAddress(station, personHealthList);
     }
 
@@ -229,6 +236,7 @@ public class PersonServiceImpl implements PersonService {
                 floodCoverageList.add(floodCoverage);
             }
         }
+        log.debug("Trying to return the FloodCoverage for station's numbers " + stations);
         return floodCoverageList;
     }
 
@@ -246,7 +254,7 @@ public class PersonServiceImpl implements PersonService {
                 personFound.add(personInfo);
             }
         }
-        log.debug("Person info founded for " + firstName + " " + lastName);
+        log.debug("Trying to return the PersonInfo for " + firstName + " " + lastName);
         return personFound;
     }
 
@@ -259,7 +267,7 @@ public class PersonServiceImpl implements PersonService {
         for (Person person : personsList) {
             if (city.equals(person.getCity())) emailListByCity.add(person.getEmail());
         }
-        log.debug("Emails found by city");
+        log.debug("Trying to return the emails list for " + city );
         return emailListByCity
                 .stream()
                 .distinct()

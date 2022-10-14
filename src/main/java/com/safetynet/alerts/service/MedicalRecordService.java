@@ -8,13 +8,14 @@ public interface MedicalRecordService {
 
 
 
-    void addMedicalRecord(MedicalRecord medicalRecord);
+    MedicalRecord addMedicalRecord(MedicalRecord medicalRecord);
 
     void updateMedicalRecord(MedicalRecord medicalRecord);
 
     void deleteMedicalRecord(MedicalRecord medicalRecord);
 
 
-
-    List<MedicalRecord> findAll();
+    ///////////
+    List<MedicalRecord> findAllMedicalRecords();
+    ///////////
 }

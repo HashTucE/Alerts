@@ -3,6 +3,7 @@ package com.safetynet.alerts.repository;
 import com.jsoniter.any.Any;
 import com.safetynet.alerts.model.MedicalRecord;
 import com.safetynet.alerts.util.DataReader;
+import com.safetynet.alerts.util.DataWriter;
 import lombok.Data;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -21,7 +22,8 @@ public class MedicalRecordRepository {
 
     private List<MedicalRecord> medicalRecordsList = loadMedicalRecordsList();
 
-    private static Any any = DataReader.jsonReader();
+    private static DataWriter dataWriter = new DataWriter();
+
 
 
     /**
@@ -30,7 +32,7 @@ public class MedicalRecordRepository {
      */
     public List<MedicalRecord> loadMedicalRecordsList() {
 
-
+        Any any = DataReader.jsonReader();
         Any anyMedicalRecords = any.get("medicalrecords");
         List<MedicalRecord> medicalRecordsList = new ArrayList<>();
         for (Any element : anyMedicalRecords) {
@@ -51,7 +53,7 @@ public class MedicalRecordRepository {
 
             medicalRecordsList.add(medicalRecord);
         }
-        log.debug("Medical records list loaded");
+        log.debug("Trying to return the medical record's list");
         return medicalRecordsList;
     }
 
@@ -61,13 +63,14 @@ public class MedicalRecordRepository {
      * @param medicalRecord medical record to add
      */
     public void addMedicalRecord(MedicalRecord medicalRecord) {
-        if (medicalRecordsList
+        if (dataWriter.getMedicalRecordList()
                 .stream()
                 .anyMatch(m -> m.getFirstName().equals(medicalRecord.getFirstName()) && m.getLastName().equals(medicalRecord.getLastName()))) {
-            throw new IllegalArgumentException("The value is already in the list.");
+            throw new IllegalArgumentException("The medical record of " + medicalRecord.getFirstName() + " " + medicalRecord.getLastName() + " already exist");
         }else {
-            medicalRecordsList.add(medicalRecord);
-            log.info("Medical Record added");
+            dataWriter.getMedicalRecordList().add(medicalRecord);
+            dataWriter.jsonWriter();
+            log.info("Adding the medical record for " + medicalRecord.getFirstName() + " " + medicalRecord.getLastName());
         }
     }
 
@@ -77,13 +80,14 @@ public class MedicalRecordRepository {
      * @param medicalRecord medical record to update
      */
     public void updateMedicalRecord(MedicalRecord medicalRecord) {
-        MedicalRecord updateMedicalRecord = medicalRecordsList
+        MedicalRecord updateMedicalRecord = dataWriter.getMedicalRecordList()
                 .stream()
                 .filter(m -> m.getFirstName().equals(medicalRecord.getFirstName()) && m.getLastName().equals(medicalRecord.getLastName()))
                 .findAny()
-                .orElseThrow(()-> new IllegalArgumentException("Medical Record not found !"));
-        medicalRecordsList.set(medicalRecordsList.indexOf(updateMedicalRecord),medicalRecord);
-        log.info("Medical Record updated");
+                .orElseThrow(()-> new IllegalArgumentException("The medical record of " + medicalRecord.getFirstName() + " " + medicalRecord.getLastName() + " was not found"));
+        dataWriter.getMedicalRecordList().set(dataWriter.getMedicalRecordList().indexOf(updateMedicalRecord),medicalRecord);
+        dataWriter.jsonWriter();
+        log.info("Trying to update the medical record for " + medicalRecord.getFirstName() + " " + medicalRecord.getLastName());
     }
 
 
@@ -92,13 +96,14 @@ public class MedicalRecordRepository {
      * @param medicalRecord medical record to delete
      */
     public void deleteMedicalRecord(MedicalRecord medicalRecord) {
-        MedicalRecord deleteMedicalRecord = medicalRecordsList
+        MedicalRecord deleteMedicalRecord = dataWriter.getMedicalRecordList()
                 .stream()
                 .filter(m -> m.getFirstName().equals(medicalRecord.getFirstName()) && m.getLastName().equals(medicalRecord.getLastName()))
                 .findAny()
-                .orElseThrow(()-> new IllegalArgumentException("Medical Record not found !"));
-        medicalRecordsList.remove(deleteMedicalRecord);
-        log.info("Medical Record deleted");
+                .orElseThrow(()-> new IllegalArgumentException("The medical record of " + medicalRecord.getFirstName() + " " + medicalRecord.getLastName() + " was not found"));
+        dataWriter.getMedicalRecordList().remove(deleteMedicalRecord);
+        dataWriter.jsonWriter();
+        log.info("Deleting to update the medical record for " + medicalRecord.getFirstName() + " " + medicalRecord.getLastName());
     }
 
 
@@ -122,11 +127,11 @@ public class MedicalRecordRepository {
         for (MedicalRecord medicalRecord : medicalRecordsList) {
             if (medicalRecord.getFirstName().equals(firstName)
                 && medicalRecord.getLastName().equals(lastName)) {
-                log.debug("Medications found for" + firstName +" "+ lastName);
+                log.debug("Medications found for " + firstName +" "+ lastName);
                 return medicalRecord.getMedications();
             }
         }
-        log.debug("Medications not found for" + firstName + " " + lastName);
+        log.debug("Medications not found for " + firstName + " " + lastName);
         return null;
     }
 
@@ -141,11 +146,11 @@ public class MedicalRecordRepository {
         for (MedicalRecord medicalRecord : medicalRecordsList) {
             if (medicalRecord.getFirstName().equals(firstName)
                     && medicalRecord.getLastName().equals(lastName)) {
-                log.debug("Allergies found for" + firstName + " " + lastName);
+                log.debug("Allergies found for " + firstName + " " + lastName);
                 return medicalRecord.getAllergies();
             }
         }
-        log.debug("Allergies not found for" + firstName + " " + lastName);
+        log.debug("Allergies not found for " + firstName + " " + lastName);
         return null;
     }
 }

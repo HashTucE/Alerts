@@ -3,6 +3,7 @@ package com.safetynet.alerts.repository;
 import com.jsoniter.any.Any;
 import com.safetynet.alerts.model.FireStation;
 import com.safetynet.alerts.util.DataReader;
+import com.safetynet.alerts.util.DataWriter;
 import lombok.Data;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -17,9 +18,7 @@ public class FireStationRepository {
 
     private static final Logger log = LogManager.getLogger(FireStationRepository.class);
 
-    private List<FireStation> fireStationsList = loadFireStationsList();
-
-    private static Any any = DataReader.jsonReader();
+    private static DataWriter dataWriter = new DataWriter();
 
 
 
@@ -28,7 +27,7 @@ public class FireStationRepository {
      */
     public List<FireStation> loadFireStationsList() {
 
-
+        Any any = DataReader.jsonReader();
         Any anyFireStation = any.get("firestations");
         List<FireStation> fireStationsList = new ArrayList<>();
 
@@ -38,7 +37,7 @@ public class FireStationRepository {
             fireStation.setStation(Integer.valueOf(String.valueOf(element.get("station"))));
             fireStationsList.add(fireStation);
         }
-        log.debug("Fire stations list loaded");
+        log.debug("Trying to return the fire station's list");
         return fireStationsList;
     }
 
@@ -49,13 +48,14 @@ public class FireStationRepository {
      * @param fireStation fire station to add
      */
     public void addFireStation(FireStation fireStation) {
-        if (fireStationsList
+        if (dataWriter.getFireStationList()
                 .stream()
                 .anyMatch(f -> f.getAddress().equals(fireStation.getAddress()))) {
-            throw new IllegalArgumentException("Fire Station Already Exist !");
+            throw new IllegalArgumentException("The fire station to the address " + fireStation.getAddress() + " already exist");
         } else {
-            fireStationsList.add(fireStation);
-            log.info("Fire Station Added");
+            dataWriter.getFireStationList().add(fireStation);
+            dataWriter.jsonWriter();
+            log.info("Adding the fire station at the " + fireStation.getAddress());
         }
     }
 
@@ -66,14 +66,15 @@ public class FireStationRepository {
      * @param fireStation fire station to update
      */
     public void updateFireStation(FireStation fireStation) {
-        FireStation updateFireStation = fireStationsList
+        FireStation updateFireStation = dataWriter.getFireStationList()
                 .stream()
                 .filter(f -> f.getAddress().equals(fireStation.getAddress()))
                 .findAny()
-                .orElseThrow(() -> new IllegalArgumentException("Fire Station not found !"));
+                .orElseThrow(() -> new IllegalArgumentException("The fire station to the address " + fireStation.getAddress() + " was not found"));
 
-        fireStationsList.set(fireStationsList.indexOf(updateFireStation), fireStation);
-        log.info("Fire station updated");
+        dataWriter.getFireStationList().set(dataWriter.getFireStationList().indexOf(updateFireStation), fireStation);
+        dataWriter.jsonWriter();
+        log.info("Updating the fire station at the " + fireStation.getAddress());
     }
 
 
@@ -83,20 +84,21 @@ public class FireStationRepository {
      * @param fireStation fire station to delete
      */
     public void deleteFireStation(FireStation fireStation) {
-        FireStation deleteFireStation = fireStationsList
+        FireStation deleteFireStation = dataWriter.getFireStationList()
                 .stream()
                 .filter(f -> f.getAddress().equals(fireStation.getAddress()))
                 .findAny()
-                .orElseThrow(() -> new IllegalArgumentException("Fire Station not found !"));
+                .orElseThrow(() -> new IllegalArgumentException("The fire station to the address " + fireStation.getAddress() + " already exist"));
 
-        fireStationsList.remove(deleteFireStation);
-        log.info("Fire station deleted");
+        dataWriter.getFireStationList().remove(deleteFireStation);
+        dataWriter.jsonWriter();
+        log.info("Deleting the fire station at the " + fireStation.getAddress());
     }
 
 
 
     public List<FireStation> findAll() {
         log.info("Fire stations list loaded");
-        return fireStationsList;
+        return loadFireStationsList();
     }
 }
