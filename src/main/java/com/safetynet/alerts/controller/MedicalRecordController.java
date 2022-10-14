@@ -1,5 +1,6 @@
 package com.safetynet.alerts.controller;
 
+import com.safetynet.alerts.constants.Log;
 import com.safetynet.alerts.model.MedicalRecord;
 import com.safetynet.alerts.service.MedicalRecordService;
 import org.apache.logging.log4j.LogManager;
@@ -28,10 +29,10 @@ public class MedicalRecordController {
     public ResponseEntity<MedicalRecord> addMedicalRecord(@RequestBody MedicalRecord medicalRecord) throws ServerException {
         MedicalRecord newMedicalRecord = medicalRecordService.addMedicalRecord(medicalRecord);
         if (newMedicalRecord == null) {
-            log.error("Object null cannot be created. Returning status 500. (Internal Server)");
+            log.error(Log.OBJECT_NULL);
             throw new ServerException("medical record is null");
         } else {
-            log.debug("Object created successfully. Returning status 201. (Ok)");
+            log.debug(Log.OBJECT_CREATED);
             return new ResponseEntity<>(newMedicalRecord, HttpStatus.CREATED);
         }
     }
@@ -40,7 +41,7 @@ public class MedicalRecordController {
     @PutMapping("/medicalRecord")
     public ResponseEntity<Void> updateMedicalRecord(@RequestBody MedicalRecord medicalRecord) {
         medicalRecordService.updateMedicalRecord(medicalRecord);
-        log.debug("Object updated successfully. Returning status 200 (Ok).");
+        log.debug(Log.OBJECT_MODIFIED);
         return ResponseEntity.noContent().build();
     }
 
@@ -48,7 +49,7 @@ public class MedicalRecordController {
     @DeleteMapping("/medicalRecord")
     public ResponseEntity<Void> deleteMedicalRecord(@RequestBody MedicalRecord medicalRecord) {
         medicalRecordService.deleteMedicalRecord(medicalRecord);
-        log.debug("Object deleted successfully. Returning status 200 (Ok).");
+        log.debug(Log.OBJECT_MODIFIED);
         return ResponseEntity.noContent().build();
     }
 }

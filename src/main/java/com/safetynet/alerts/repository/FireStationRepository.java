@@ -88,7 +88,7 @@ public class FireStationRepository {
                 .stream()
                 .filter(f -> f.getAddress().equals(fireStation.getAddress()))
                 .findAny()
-                .orElseThrow(() -> new IllegalArgumentException("The fire station to the address " + fireStation.getAddress() + " already exist"));
+                .orElseThrow(() -> new IllegalArgumentException("The fire station to the address " + fireStation.getAddress() + " was not found"));
 
         dataWriter.getFireStationList().remove(deleteFireStation);
         dataWriter.jsonWriter();

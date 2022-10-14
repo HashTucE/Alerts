@@ -24,7 +24,7 @@ public class MedicalRecordServiceImpl implements MedicalRecordService {
     public MedicalRecord addMedicalRecord(MedicalRecord medicalRecord) {
         log.debug("addMedicalRecord() from repository called");
         medicalRecordRepository.addMedicalRecord(medicalRecord);
-        return null;
+        return medicalRecord;
     }
 
     @Override

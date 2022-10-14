@@ -1,5 +1,6 @@
 package com.safetynet.alerts.controller;
 
+import com.safetynet.alerts.constants.Log;
 import com.safetynet.alerts.dto.*;
 import com.safetynet.alerts.model.Person;
 import com.safetynet.alerts.service.PersonService;
@@ -30,10 +31,10 @@ public class PersonController {
     public ResponseEntity<Person> addPerson(@RequestBody Person person) throws ServerException {
         Person newPerson = personService.addPerson(person);
         if (newPerson == null) {
-            log.error("Object null cannot be created. Returning status 500. (Internal Server)");
+            log.error(Log.OBJECT_NULL);
             throw new ServerException("person is null");
         } else {
-            log.debug("Object created successfully. Returning status 201. (Ok)");
+            log.debug(Log.OBJECT_CREATED);
             return new ResponseEntity<>(newPerson, HttpStatus.CREATED);
         }
     }
@@ -43,7 +44,7 @@ public class PersonController {
     @PutMapping("/person")
     public ResponseEntity<Void> updatePerson(@RequestBody Person person) {
         personService.updatePerson(person);
-        log.debug("Object updated successfully. Returning status 200 (Ok).");
+        log.debug(Log.OBJECT_MODIFIED);
         return ResponseEntity.noContent().build();
     }
 
@@ -52,7 +53,7 @@ public class PersonController {
     @DeleteMapping("/person")
     public ResponseEntity<Void> deletePerson(@RequestBody Person person) {
         personService.deletePerson(person);
-        log.debug("Object deleted successfully. Returning status 200 (Ok).");
+        log.debug(Log.OBJECT_MODIFIED);
         return ResponseEntity.noContent().build();
     }
 

@@ -215,9 +215,6 @@
   }, {
     "address" : "951 LoneTree Rd",
     "station" : 2
-  }, {
-    "address" : null,
-    "station" : null
   } ],
   "medicalrecords" : [ {
     "firstName" : "John",
@@ -357,11 +354,5 @@
     "birthdate" : "08/06/1945",
     "medications" : [ "tradoxidine:400mg" ],
     "allergies" : [ ]
-  }, {
-    "firstName" : "Jeremy",
-    "lastName" : "Bayeul",
-    "birthdate" : "21/12/1986",
-    "medications" : [ "Carvin" ],
-    "allergies" : [ "62220" ]
   } ]
 }

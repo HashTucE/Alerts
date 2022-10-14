@@ -2,6 +2,7 @@ package com.safetynet.alerts.util;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
+import com.safetynet.alerts.constants.Path;
 import com.safetynet.alerts.dto.DataBase;
 import com.safetynet.alerts.model.FireStation;
 import com.safetynet.alerts.model.MedicalRecord;
@@ -45,7 +46,7 @@ public class DataWriter {
 
         try {
             ObjectMapper mapper = new ObjectMapper().enable(SerializationFeature.INDENT_OUTPUT);
-            mapper.writeValue(new File("src/main/resources/data_out.json"), dataBase);
+            mapper.writeValue(new File(Path.DATA), dataBase);
             log.debug("Json file saved");
         } catch (IOException e) {
             log.error("Json file not saved");

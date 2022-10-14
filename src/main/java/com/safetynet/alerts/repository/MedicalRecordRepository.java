@@ -63,11 +63,13 @@ public class MedicalRecordRepository {
      * @param medicalRecord medical record to add
      */
     public void addMedicalRecord(MedicalRecord medicalRecord) {
+
         if (dataWriter.getMedicalRecordList()
                 .stream()
                 .anyMatch(m -> m.getFirstName().equals(medicalRecord.getFirstName()) && m.getLastName().equals(medicalRecord.getLastName()))) {
+            log.info("MedicalRecord already exist !");
             throw new IllegalArgumentException("The medical record of " + medicalRecord.getFirstName() + " " + medicalRecord.getLastName() + " already exist");
-        }else {
+        } else {
             dataWriter.getMedicalRecordList().add(medicalRecord);
             dataWriter.jsonWriter();
             log.info("Adding the medical record for " + medicalRecord.getFirstName() + " " + medicalRecord.getLastName());

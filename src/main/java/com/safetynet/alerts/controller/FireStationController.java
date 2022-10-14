@@ -1,5 +1,6 @@
 package com.safetynet.alerts.controller;
 
+import com.safetynet.alerts.constants.Log;
 import com.safetynet.alerts.model.FireStation;
 import com.safetynet.alerts.service.FireStationService;
 import org.apache.logging.log4j.LogManager;
@@ -31,10 +32,10 @@ public class FireStationController {
     public ResponseEntity<FireStation> addFireStation(@RequestBody FireStation fireStation) throws ServerException {
         FireStation newFireStation = fireStationService.addFireStation(fireStation);
         if (newFireStation == null) {
-            log.error("Object null cannot be created. Returning status 500. (Internal Server)");
+            log.error(Log.OBJECT_NULL);
             throw new ServerException("firestation is null");
         } else {
-            log.debug("Object created successfully. Returning status 201. (Ok)");
+            log.debug(Log.OBJECT_CREATED);
             return new ResponseEntity<>(newFireStation, HttpStatus.CREATED);
         }
     }
@@ -45,7 +46,7 @@ public class FireStationController {
     @PutMapping("/firestation")
     public ResponseEntity<Void> updateFireStation(@RequestBody FireStation fireStation) {
         fireStationService.updateFireStation(fireStation);
-        log.debug("Object updated successfully. Returning status 200 (Ok).");
+        log.debug(Log.OBJECT_MODIFIED);
         return ResponseEntity.noContent().build();
     }
 
@@ -55,7 +56,7 @@ public class FireStationController {
     @DeleteMapping("/firestation")
     public ResponseEntity<Void> deleteFireStation(@RequestBody FireStation fireStation) {
         fireStationService.deleteFireStation(fireStation);
-        log.debug("Object deleted successfully. Returning status 200 (Ok).");
+        log.debug(Log.OBJECT_MODIFIED);
         return ResponseEntity.noContent().build();
     }
 }

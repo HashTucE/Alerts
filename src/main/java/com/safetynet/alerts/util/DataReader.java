@@ -2,6 +2,7 @@ package com.safetynet.alerts.util;
 
 import com.jsoniter.JsonIterator;
 import com.jsoniter.any.Any;
+import com.safetynet.alerts.constants.Path;
 import lombok.Data;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -23,7 +24,7 @@ public class DataReader {
 
         Any any = null;
         try {
-            byte[] bytesFile = Files.readAllBytes(new File("src/main/resources/data_out.json").toPath());
+            byte[] bytesFile = Files.readAllBytes(new File(Path.DATA).toPath());
             JsonIterator jsonIterator = JsonIterator.parse(bytesFile);
             any = jsonIterator.readAny();
             jsonIterator.close();
