@@ -24,7 +24,7 @@ public class DataReader {
 
         Any any = null;
         try {
-            byte[] bytesFile = Files.readAllBytes(new File(Path.DATA).toPath());
+            byte[] bytesFile = Files.readAllBytes(new File(Path.DATAO).toPath());
             JsonIterator jsonIterator = JsonIterator.parse(bytesFile);
             any = jsonIterator.readAny();
             jsonIterator.close();
