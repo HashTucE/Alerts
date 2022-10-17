@@ -46,7 +46,6 @@ class DataWriterTest {
                                 List.of("nillacilan"))));
 
         dataWriter.jsonWriter();
-        System.out.println(dataWriter);
 
         assertTrue(Files.exists(Paths.get(Path.DATA)));
     }

@@ -96,9 +96,35 @@ public class FireStationRepository {
     }
 
 
+    /////////////////////
+//    public List<FireStation> findAll() {
+//        log.info("Fire stations list loaded");
+//        return loadFireStationsList();
+//    }
+    /////////////////////
 
-    public List<FireStation> findAll() {
-        log.info("Fire stations list loaded");
-        return loadFireStationsList();
+
+
+    public List<String> findFireStationAddressesByNumber(Integer fireStationNumber) {
+
+        List<String> addressesList = new ArrayList<>();
+        for (FireStation fireStation : loadFireStationsList()) {
+            if (fireStation.getStation().equals((fireStationNumber)))
+                addressesList.add(fireStation.getAddress());
+        }
+        log.debug("Trying to return the firestation's adresses list for the station number " + fireStationNumber);
+        return addressesList;
+    }
+
+
+
+    public Integer findFireStationNumberByAddress(String address) {
+
+        Integer station = null;
+        for (FireStation fireStation : loadFireStationsList()) {
+            if (fireStation.getAddress().equals(address)) {station = fireStation.getStation();}
+        }
+        log.debug("Trying to return the station number for " + address);
+        return station;
     }
 }

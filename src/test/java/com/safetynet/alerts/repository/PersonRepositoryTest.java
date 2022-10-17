@@ -14,25 +14,23 @@ class PersonRepositoryTest {
 
     private PersonRepository personRepository = new PersonRepository();
 
-//    @Test
-//    @DisplayName("Should throw an exception when the person is already exist")
-//    void addPersonWhenPersonIsAlreadyExistThenThrowException() {
-//
-//        Person person = new Person(
-//                        "John",
-//                        "Boyd",
-//                        "1509 Culver St",
-//                        "Culver",
-//                        "97451",
-//                        "841-874-6512",
-//                        "jaboyd@email.com");
-//        personRepository.addPerson(person);
-//
-//        assertThrows(IllegalArgumentException.class, () -> personRepository.addPerson(person));
-//    }
 
 
+    @Test
+    @DisplayName("Should throw an exception when the person is already exist")
+    void addPersonWhenPersonIsAlreadyExistThenThrowException() {
 
+        Person person = new Person(
+                        "John",
+                        "Boyd",
+                        "1509 Culver St",
+                        "Culver",
+                        "97451",
+                        "841-874-6512",
+                        "jaboyd@email.com");
+
+        assertThrows(IllegalArgumentException.class, () -> personRepository.addPerson(person));
+    }
 
 
     @Test
@@ -47,14 +45,13 @@ class PersonRepositoryTest {
                         "97451",
                         "841-874-6512",
                         "jaboyd@email.com");
+
         personRepository.addPerson(person);
+
         assertEquals(person, personRepository.findPerson("John", "Wick"));
+
+        personRepository.deletePerson(person);
     }
-
-
-
-
-
 
 
     @Test
@@ -70,6 +67,7 @@ class PersonRepositoryTest {
                 "jaboyd@email.com");
         assertThrows(IllegalArgumentException.class, () -> personRepository.updatePerson(person));
     }
+
 
     @Test
     @DisplayName("Should update the person when the person is found")
@@ -95,7 +93,10 @@ class PersonRepositoryTest {
         personRepository.updatePerson(personUpdated);
 
         assertEquals(personUpdated, personRepository.findPerson("James", "Bond"));
+
+        personRepository.deletePerson(personUpdated);
     }
+
 
     @Test
     @DisplayName("Should throw an exception when the person is not found")
@@ -112,6 +113,7 @@ class PersonRepositoryTest {
 
         assertThrows(IllegalArgumentException.class, () -> personRepository.deletePerson(person));
     }
+
 
     @Test
     @DisplayName("Should delete the person when the person is found")
@@ -131,6 +133,7 @@ class PersonRepositoryTest {
                 IllegalArgumentException.class, () -> personRepository.findPerson("John", "David"));
     }
 
+
     @Test
     @DisplayName("Should throw an exception when the person does not exist")
     void findPersonWhenPersonDoesNotExistThenThrowException() {
@@ -139,6 +142,7 @@ class PersonRepositoryTest {
 
         assertThrows(IllegalArgumentException.class, () -> personRepository.findPerson(firstName, lastName));
     }
+
 
     @Test
     @DisplayName("Should return the person when the person exists")

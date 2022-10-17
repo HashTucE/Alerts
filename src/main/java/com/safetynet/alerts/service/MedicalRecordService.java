@@ -2,8 +2,6 @@ package com.safetynet.alerts.service;
 
 import com.safetynet.alerts.model.MedicalRecord;
 
-import java.util.List;
-
 public interface MedicalRecordService {
 
 
@@ -15,7 +13,7 @@ public interface MedicalRecordService {
     void deleteMedicalRecord(MedicalRecord medicalRecord);
 
 
-    ///////////
-    List<MedicalRecord> findAllMedicalRecords();
-    ///////////
+//    ///////////
+//    List<MedicalRecord> findAllMedicalRecords();
+//    ///////////
 }

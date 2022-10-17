@@ -109,14 +109,29 @@ public class MedicalRecordRepository {
     }
 
 
-    /**
-     * Find the full medical records list
-     * @return a list medical records
-     */
-    public List<MedicalRecord> findAll() {
-        log.info("Medical Records list loaded");
-        return medicalRecordsList;
+    public MedicalRecord findMedicalRecord(String firstName, String lastName) {
+
+        return dataWriter.getMedicalRecordList()
+                .stream()
+                .filter(m -> m.getFirstName().equals(firstName) && m.getLastName().equals(lastName))
+                .findAny().orElseThrow(() -> new IllegalArgumentException("MedicalRecord for " + firstName + " " + lastName + " not found !"));
     }
+
+
+
+
+//    ///////////////////
+//    /**
+//     * Find the full medical records list
+//     * @return a list medical records
+//     */
+//    public List<MedicalRecord> findAll() {
+//        log.info("Medical Records list loaded");
+//        return medicalRecordsList;
+//    }
+//    ///////////////////
+
+
 
 
     /**

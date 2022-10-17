@@ -2,6 +2,7 @@ package com.safetynet.alerts.service;
 
 import com.safetynet.alerts.dto.*;
 import com.safetynet.alerts.model.Person;
+import com.safetynet.alerts.repository.FireStationRepository;
 import com.safetynet.alerts.repository.MedicalRecordRepository;
 import com.safetynet.alerts.repository.PersonRepository;
 import com.safetynet.alerts.util.AgeCalculator;
@@ -26,7 +27,7 @@ public class PersonServiceImpl implements PersonService {
     MedicalRecordRepository medicalRecordRepository = new MedicalRecordRepository();
 
     @Autowired
-    FireStationService fireStationService = new FireStationServiceImpl();
+    FireStationRepository fireStationRepository = new FireStationRepository();
 
     @Autowired
     AgeCalculator ageCalculator = new AgeCalculator();
@@ -63,18 +64,18 @@ public class PersonServiceImpl implements PersonService {
 
 
 
-    ///////////
-    @Override
-    public Person findPerson(String firstName, String lastName){
-        log.debug("findPerson() from repository called");
-        return personRepository.findPerson(firstName,lastName);
-    }
-
-    @Override
-    public List<Person> findAllPersons() {
-        return personRepository.findAllPersons();
-    }
-    ///////////
+//    ///////////
+//    @Override
+//    public Person findPerson(String firstName, String lastName){
+//        log.debug("findPerson() from repository called");
+//        return personRepository.findPerson(firstName,lastName);
+//    }
+//
+//    @Override
+//    public List<Person> findAllPersons() {
+//        return personRepository.findAllPersons();
+//    }
+//    ///////////
 
 
 
@@ -106,7 +107,7 @@ public class PersonServiceImpl implements PersonService {
     @Override
     public FireCoverageByStation getCoverageListFromStation(Integer station) {
 
-        List<String> fireStationAddress = fireStationService.findFireStationAddressesByNumber(station);
+        List<String> fireStationAddress = fireStationRepository.findFireStationAddressesByNumber(station);
         List<PersonContact> personContactList = new ArrayList<>();
         int adultsNumber = 0;
         int childrenNumber = 0;
@@ -161,7 +162,7 @@ public class PersonServiceImpl implements PersonService {
     @Override
     public List<String> getPhoneListFromStation(Integer station) {
 
-        List<String> fireStationAddress = fireStationService.findFireStationAddressesByNumber(station);
+        List<String> fireStationAddress = fireStationRepository.findFireStationAddressesByNumber(station);
         List<String> phoneList = new ArrayList<>();
 
         log.debug("Trying to call getPhoneListFromStation()");
@@ -196,7 +197,7 @@ public class PersonServiceImpl implements PersonService {
                 personHealthList.add(personHealth);
             }
         }
-        Integer station = fireStationService.findStationNumberByAddress(address);
+        Integer station = fireStationRepository.findFireStationNumberByAddress(address);
         log.debug("Trying to return the FireCoverageByAddress for " + address);
         return new FireCoverageByAddress(station, personHealthList);
     }
@@ -209,7 +210,7 @@ public class PersonServiceImpl implements PersonService {
         List<FloodCoverage> floodCoverageList = new ArrayList<>();
 
         for (Integer station : stations) {
-            List<String> addresses = fireStationService.findAddressesByNumber(station);
+            List<String> addresses = fireStationRepository.findFireStationAddressesByNumber(station);
 
             for (String address : addresses) {
                 List<Resident> residentList = new ArrayList<>();

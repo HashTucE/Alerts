@@ -16,11 +16,19 @@ public interface PersonService {
     void deletePerson(Person person);
 
 
-    //////////
-    Person findPerson(String firstName, String lastName);
 
-    List<Person> findAllPersons();
-    ///////////
+
+
+
+//    //////////
+//    Person findPerson(String firstName, String lastName);
+//
+//    List<Person> findAllPersons();
+//    ///////////
+
+
+
+
 
 
     //SPECIFIC SERVICES//
