@@ -96,15 +96,12 @@ public class FireStationRepository {
     }
 
 
-    /////////////////////
-//    public List<FireStation> findAll() {
-//        log.info("Fire stations list loaded");
-//        return loadFireStationsList();
-//    }
-    /////////////////////
 
-
-
+    /**
+     * find a list of fireStation addresses from station number
+     * @param fireStationNumber station number
+     * @return adresses list
+     */
     public List<String> findFireStationAddressesByNumber(Integer fireStationNumber) {
 
         List<String> addressesList = new ArrayList<>();
@@ -117,7 +114,11 @@ public class FireStationRepository {
     }
 
 
-
+    /**
+     * find a fire station number using his address
+     * @param address
+     * @return station number
+     */
     public Integer findFireStationNumberByAddress(String address) {
 
         Integer station = null;

@@ -101,7 +101,11 @@ public class PersonRepository {
     }
 
 
-
+    /**
+     * find a person using his firstName and lastName
+     * @param firstName first name
+     * @param lastName last name
+     */
     public Person findPerson(String firstName, String lastName) {
 
         return dataWriter.getPersonList()
@@ -109,12 +113,5 @@ public class PersonRepository {
                 .filter(p -> p.getFirstName().equals(firstName) && p.getLastName().equals(lastName))
                 .findAny().orElseThrow(() -> new IllegalArgumentException("Person not found !"));
     }
-
-
-//    //////////////////////
-//    public List<Person> findAllPersons() {
-//        return loadPersonsList();
-//    }
-//    //////////////////////
 }
 

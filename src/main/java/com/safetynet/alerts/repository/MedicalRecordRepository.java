@@ -109,6 +109,11 @@ public class MedicalRecordRepository {
     }
 
 
+    /**
+     * find a medical record using his firstName and lastName
+     * @param firstName first name
+     * @param lastName last name
+     */
     public MedicalRecord findMedicalRecord(String firstName, String lastName) {
 
         return dataWriter.getMedicalRecordList()
@@ -117,19 +122,6 @@ public class MedicalRecordRepository {
                 .findAny().orElseThrow(() -> new IllegalArgumentException("MedicalRecord for " + firstName + " " + lastName + " not found !"));
     }
 
-
-
-
-//    ///////////////////
-//    /**
-//     * Find the full medical records list
-//     * @return a list medical records
-//     */
-//    public List<MedicalRecord> findAll() {
-//        log.info("Medical Records list loaded");
-//        return medicalRecordsList;
-//    }
-//    ///////////////////
 
 
 

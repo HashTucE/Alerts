@@ -32,10 +32,6 @@ public class PersonServiceImpl implements PersonService {
     @Autowired
     AgeCalculator ageCalculator = new AgeCalculator();
 
-
-
-    private List<Person> personsList = personRepository.loadPersonsList();
-
     private static final Logger log = LogManager.getLogger(PersonServiceImpl.class);
 
 
@@ -64,45 +60,6 @@ public class PersonServiceImpl implements PersonService {
 
 
 
-//    ///////////
-//    @Override
-//    public Person findPerson(String firstName, String lastName){
-//        log.debug("findPerson() from repository called");
-//        return personRepository.findPerson(firstName,lastName);
-//    }
-//
-//    @Override
-//    public List<Person> findAllPersons() {
-//        return personRepository.findAllPersons();
-//    }
-//    ///////////
-
-
-
-
-
-    /**
-     * @return a list of persons info containing fistName, lastName, address, age, email and medical records
-     */
-    public List<PersonInfo> loadPersonInfoList() {
-
-        List<PersonInfo> personInfoList = new ArrayList<>();
-
-        for (Person person : personsList) {
-            personInfoList.add(new PersonInfo(
-                    person.getFirstName(),
-                    person.getLastName(),
-                    person.getAddress(),
-                    ageCalculator.calculateAgeFromName(person.getFirstName(), person.getLastName()),
-                    person.getEmail(),
-                    medicalRecordRepository.findMedicationsByName(person.getFirstName(), person.getLastName()),
-                    medicalRecordRepository.findAllergiesByName(person.getFirstName(), person.getLastName())));
-        }
-        log.debug("Trying to return the PersonInfo list");
-        return personInfoList;
-    }
-
-
 
     @Override
     public FireCoverageByStation getCoverageListFromStation(Integer station) {
@@ -112,7 +69,7 @@ public class PersonServiceImpl implements PersonService {
         int adultsNumber = 0;
         int childrenNumber = 0;
 
-        for (Person person : personsList) {
+        for (Person person : personRepository.loadPersonsList()) {
             if (fireStationAddress.contains(person.getAddress())) {
                 PersonContact personContact = new PersonContact();
                 personContact.setFirstName(person.getFirstName());
@@ -138,7 +95,18 @@ public class PersonServiceImpl implements PersonService {
 
         List<PersonAge> children = new ArrayList<>();
         List<PersonAge> others = new ArrayList<>();
-        List<PersonInfo> personInfoList = loadPersonInfoList();
+        List<PersonInfo> personInfoList = new ArrayList<>();
+
+        for (Person person : personRepository.loadPersonsList()) {
+            personInfoList.add(new PersonInfo(
+                    person.getFirstName(),
+                    person.getLastName(),
+                    person.getAddress(),
+                    ageCalculator.calculateAgeFromName(person.getFirstName(), person.getLastName()),
+                    person.getEmail(),
+                    medicalRecordRepository.findMedicationsByName(person.getFirstName(), person.getLastName()),
+                    medicalRecordRepository.findAllergiesByName(person.getFirstName(), person.getLastName())));
+        }
 
         for (PersonInfo personInfo : personInfoList) {
             if (personInfo.getAddress().equals(address)) {
@@ -185,7 +153,7 @@ public class PersonServiceImpl implements PersonService {
 
         List<PersonHealth> personHealthList = new ArrayList<>();
 
-        for (Person person : personsList) {
+        for (Person person : personRepository.loadPersonsList()) {
             if (person.getAddress().equals(address)) {
                 PersonHealth personHealth = new PersonHealth();
                 personHealth.setFirstName(person.getFirstName());
@@ -215,7 +183,7 @@ public class PersonServiceImpl implements PersonService {
             for (String address : addresses) {
                 List<Resident> residentList = new ArrayList<>();
 
-                for (Person person : personsList) {
+                for (Person person : personRepository.loadPersonsList()) {
                     Resident resident = new Resident();
                     resident.setFirstName(person.getFirstName());
                     resident.setLastName(person.getLastName());
@@ -247,7 +215,19 @@ public class PersonServiceImpl implements PersonService {
     public List<PersonInfo> findPersonInfoByName(String firstName, String lastName) {
 
         List<PersonInfo> personFound = new ArrayList<>();
-        List<PersonInfo> personInfoList = loadPersonInfoList();
+        List<PersonInfo> personInfoList = new ArrayList<>();
+
+        for (Person person : personRepository.loadPersonsList()) {
+            personInfoList.add(new PersonInfo(
+                    person.getFirstName(),
+                    person.getLastName(),
+                    person.getAddress(),
+                    ageCalculator.calculateAgeFromName(person.getFirstName(), person.getLastName()),
+                    person.getEmail(),
+                    medicalRecordRepository.findMedicationsByName(person.getFirstName(), person.getLastName()),
+                    medicalRecordRepository.findAllergiesByName(person.getFirstName(), person.getLastName())));
+        }
+
         for (PersonInfo personInfo : personInfoList) {
             if (lastName.equals(personInfo.getLastName())
                     || firstName.equals(personInfo.getFirstName())
@@ -265,7 +245,7 @@ public class PersonServiceImpl implements PersonService {
     public List<String> findAllEmailsByCity(String city) {
 
         List<String> emailListByCity = new ArrayList<>();
-        for (Person person : personsList) {
+        for (Person person : personRepository.loadPersonsList()) {
             if (city.equals(person.getCity())) emailListByCity.add(person.getEmail());
         }
         log.debug("Trying to return the emails list for " + city );

@@ -17,9 +17,6 @@ public class FireStationServiceImpl implements FireStationService {
     private static final Logger log = LogManager.getLogger(FireStationServiceImpl.class);
 
 
-//    List<FireStation> fireStationsList = fireStationRepository.loadFireStationsList();
-
-
 
     @Override
     public FireStation addFireStation(FireStation fireStation) {
@@ -39,46 +36,4 @@ public class FireStationServiceImpl implements FireStationService {
         log.debug("deleteFireStation() from repository called");
         fireStationRepository.deleteFireStation(fireStation);
     }
-
-
-
-
-//    ///////////
-//    @Override
-//    public List<FireStation> findAllFireStations() {
-//        log.debug("findAll() from repository called");
-//        return fireStationRepository.findAll();
-//    }
-//    ///////////
-
-
-
-
-
-
-//    @Override
-//    public List<String> findFireStationAddressesByNumber(Integer fireStationNumber) {
-//
-//        List<String> addressesList = new ArrayList<>();
-//        for (FireStation fireStation : fireStationsList) {
-//            if (fireStation.getStation().equals((fireStationNumber)))
-//                addressesList.add(fireStation.getAddress());
-//        }
-//        log.debug("Trying to return the firestation's adresses list for the station number " + fireStationNumber);
-//        return addressesList;
-//    }
-//
-//
-//    @Override
-//    public Integer findFireStationNumberByAddress(String address) {
-//
-//        Integer station = 0;
-//        for (FireStation fireStation : fireStationsList) {
-//            if (fireStation.getAddress().equals(address)) {station = fireStation.getStation();}
-//        }
-//        log.debug("Trying to return the station number for " + address);
-//        return station;
-//    }
-
-
 }

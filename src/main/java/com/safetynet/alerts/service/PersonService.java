@@ -18,19 +18,6 @@ public interface PersonService {
 
 
 
-
-
-//    //////////
-//    Person findPerson(String firstName, String lastName);
-//
-//    List<Person> findAllPersons();
-//    ///////////
-
-
-
-
-
-
     //SPECIFIC SERVICES//
 
 

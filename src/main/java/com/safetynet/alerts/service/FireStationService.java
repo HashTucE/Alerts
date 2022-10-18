@@ -12,17 +12,5 @@ public interface FireStationService {
     void deleteFireStation(FireStation firestation);
 
 
-//    ///////////
-//    List<FireStation> findAllFireStations();
-//    ///////////
-
-
-//    List<String> findFireStationAddressesByNumber(Integer fireStationNumber);
-//
-//
-//    Integer findFireStationNumberByAddress(String address);
-
-
-
 
 }

@@ -13,7 +13,5 @@ public interface MedicalRecordService {
     void deleteMedicalRecord(MedicalRecord medicalRecord);
 
 
-//    ///////////
-//    List<MedicalRecord> findAllMedicalRecords();
-//    ///////////
+
 }

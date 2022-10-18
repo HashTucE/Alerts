@@ -36,13 +36,4 @@ public class MedicalRecordServiceImpl implements MedicalRecordService {
         log.debug("deleteMedicalRecord() from repository called");
         medicalRecordRepository.deleteMedicalRecord(medicalRecord);
     }
-
-
-//    ///////////
-//        @Override
-//    public List<MedicalRecord> findAllMedicalRecords(){
-//        log.debug("findAll() from repository called");
-//        return medicalRecordRepository.findAll();
-//    }
-//    ///////////
 }
