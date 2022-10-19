@@ -49,21 +49,4 @@ class DataWriterTest {
 
         assertTrue(Files.exists(Paths.get(Path.DATA)));
     }
-
-
-
-
-    //    @Test
-//    @DisplayName("Should not save the json file when the data is incorrect")
-//    void jsonWriterWhenDataIsIncorrectThenNotSaveJsonFile() {
-//
-//        DataWriter dataWriter = new DataWriter();
-//        dataWriter.setPersonList(null);
-//        dataWriter.setFireStationList(null);
-//        dataWriter.setMedicalRecordList(null);
-//
-//        dataWriter.jsonWriter();
-//
-//        assertFalse(Files.exists(Paths.get(Path.DATA)));
-//    }
 }

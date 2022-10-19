@@ -11,14 +11,13 @@ import java.util.Collections;
 import java.util.List;
 
 import static org.junit.Assert.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 @ExtendWith(MockitoExtension.class)
 public class FireStationRepositoryTest {
 
 
-        private FireStationRepository fireStationRepository = new FireStationRepository();
+        private final FireStationRepository fireStationRepository = new FireStationRepository();
 
 
 
@@ -126,7 +125,7 @@ public class FireStationRepositoryTest {
 
         Integer number = fireStationRepository.findFireStationNumberByAddress("130 Test St");
 
-        assertTrue(number == null);
+        assertNull(number);
     }
 
 

@@ -9,13 +9,14 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.List;
 
 import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.when;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @WebMvcTest(controllers = PersonController.class)
@@ -28,7 +29,7 @@ public class PersonControllerTest {
     private PersonService personService;
 
 
-    Person person = new Person("a", "b", "c", "d", "e", "f", "g");
+    Person person = new Person("any", "any", "any", "any", "any", "any", "any");
 
 
     public static String asJsonString(final Object obj) {
@@ -42,43 +43,48 @@ public class PersonControllerTest {
 
 
 
+    @Test
+    @DisplayName("addPersonTest should return 201 object created")
+    public void addPersonTest() throws Exception {
 
-//    @Test
-//    public void addPersonTest() throws Exception {
-//
-//        mockMvc.perform(post("/person")
-//                .contentType(MediaType.APPLICATION_JSON)
-//                .content(asJsonString(person)))
-//                .andExpect(status().isCreated())
-//                .andReturn();
-//    }
-//
-//
-//    @Test
-//    public void editPersonTest() throws Exception {
-//
-//        mockMvc.perform(put("/person")
-//                .contentType(MediaType.APPLICATION_JSON)
-//                .content(asJsonString(person)))
-//                .andExpect(status().isOk());
-//    }
-//
-//
-//    @Test
-//    public void deletePersonTest() throws Exception {
-//
-//        mockMvc.perform(delete("/person")
-//                .contentType(MediaType.APPLICATION_JSON)
-//                .content(asJsonString(person)))
-//                .andExpect(status().isOk());
-//    }
+        when(personService.addPerson(person)).thenReturn(person);
+
+        mockMvc.perform(post("/person")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(asJsonString(person)))
+                .andExpect(status().isCreated())
+                .andReturn();
+    }
+
+
+    @Test
+    @DisplayName("updatePersonTest should return 204 no content")
+    public void updatePersonTest() throws Exception {
+
+        mockMvc.perform(put("/person")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(asJsonString(person)))
+                .andExpect(status().isNoContent());
+    }
+
+
+
+    @Test
+    @DisplayName("deletePersonTest should return 204 no content")
+    public void deletePersonTest() throws Exception {
+
+        mockMvc.perform(delete("/person")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(asJsonString(person)))
+                .andExpect(status().isNoContent());
+    }
 
 
 
 
 
     @Test
-    @DisplayName("Should return status 200 when the object is found")
+    @DisplayName("getCoverageListFromStationTest should return 200 object found")
     public void getCoverageListFromStationTest() throws Exception {
 
         when(personService.getCoverageListFromStation(3)).thenReturn(
@@ -88,18 +94,10 @@ public class PersonControllerTest {
                 .andExpect(status().isOk());
     }
 
-//    @Test
-//    @DisplayName("Should return status 404 when the object is not found")
-//    public void getCoverageListFromStationNegativeTest() throws Exception {
-//
-//        mockMvc.perform(get("/firestation?stationNumber=9"))
-//                .andExpect(status().isNotFound());
-//    }
-
 
 
     @Test
-    @DisplayName("Should return status 200 when the object is found")
+    @DisplayName("getChildrenListByAddressTest should return 200 object found")
     public void getChildrenListByAddressTest() throws Exception {
 
         when(personService.getChildrenListByAddress("any")).thenReturn(
@@ -109,18 +107,10 @@ public class PersonControllerTest {
                 .andExpect(status().isOk());
     }
 
-//    @Test
-//    @DisplayName("Should return status 404 when the object is not found")
-//    public void getChildrenListByAddressNegativeTest() throws Exception {
-//
-//        mockMvc.perform(get("/childAlert?address=any"))
-//                .andExpect(status().isNotFound());
-//    }
-
 
 
     @Test
-    @DisplayName("Should return status 200 when the object is found")
+    @DisplayName("getPhoneListFromStationTest should return 200 object found")
     public void getPhoneListFromStationTest() throws Exception {
 
         when(personService.getPhoneListFromStation(3)).thenReturn(List.of("any"));
@@ -130,7 +120,7 @@ public class PersonControllerTest {
     }
 
     @Test
-    @DisplayName("Should return status 404 when the object is not found")
+    @DisplayName("getPhoneListFromStationTest should return 404 object not found")
     public void getPhoneListFromStationNegativeTest() throws Exception {
 
         mockMvc.perform(get("/phoneAlert?firestation=3"))
@@ -140,7 +130,7 @@ public class PersonControllerTest {
 
 
     @Test
-    @DisplayName("Should return status 200 when the object is found")
+    @DisplayName("getInhabitantsByAddressTest should return 200 object found")
     public void getInhabitantsByAddressTest() throws Exception {
 
         when(personService.getInhabitantsByAddress("any")).thenReturn(
@@ -150,18 +140,10 @@ public class PersonControllerTest {
                 .andExpect(status().isOk());
     }
 
-//    @Test
-//    @DisplayName("Should return status 404 when the object is not found")
-//    public void getInhabitantsByAddressNegativeTest() throws Exception {
-//
-//        mockMvc.perform(get("/fire?address=any"))
-//                .andExpect(status().isNotFound());
-//    }
-
 
 
     @Test
-    @DisplayName("Should return status 200 when the object is found")
+    @DisplayName("getInhabitantsByStationTest should return 200 object found")
     public void getInhabitantsByStationTest() throws Exception {
 
         when(personService.getInhabitantsByStation(List.of(1, 2))).thenReturn(List.of(
@@ -172,7 +154,7 @@ public class PersonControllerTest {
     }
 
     @Test
-    @DisplayName("Should return status 404 when the object is not found")
+    @DisplayName("getInhabitantsByStationTest should return 404 object not found")
     public void getInhabitantsByStationNegativeTest() throws Exception {
 
         mockMvc.perform(get("/flood/stations?stations=1,2"))
@@ -182,7 +164,7 @@ public class PersonControllerTest {
 
 
     @Test
-    @DisplayName("Should return status 200 when the object is found")
+    @DisplayName("findPersonInfoByNameTest should return 200 object found")
     public void findPersonInfoByNameTest() throws Exception {
 
         when(personService.findPersonInfoByName("any", "any")).thenReturn(List.of(
@@ -193,7 +175,7 @@ public class PersonControllerTest {
     }
 
     @Test
-    @DisplayName("Should return status 404 when the object is not found")
+    @DisplayName("findPersonInfoByNameTest should return 404 object not found")
     public void findPersonInfoByNameNegativeTest() throws Exception {
 
         mockMvc.perform(get("/personInfo?firstName=any&lastName=any"))
@@ -203,7 +185,7 @@ public class PersonControllerTest {
 
 
     @Test
-    @DisplayName("Should return status 200 when the object is found")
+    @DisplayName("findAllEmailsByCityTest should return 200 object found")
     public void findAllEmailsByCityTest() throws Exception {
 
         when(personService.findAllEmailsByCity("any")).thenReturn(List.of("anyEmails"));
@@ -213,7 +195,7 @@ public class PersonControllerTest {
     }
 
     @Test
-    @DisplayName("Should return status 404 when the object is not found")
+    @DisplayName("findAllEmailsByCityTest should return 404 object not found")
     public void findAllEmailsByCityNegativeTest() throws Exception {
 
         mockMvc.perform(get("/communityEmail?city=any"))

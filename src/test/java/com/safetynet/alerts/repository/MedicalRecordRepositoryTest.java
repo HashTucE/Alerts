@@ -17,7 +17,7 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 class MedicalRecordRepositoryTest {
 
 
-    private MedicalRecordRepository medicalRecordRepository = new MedicalRecordRepository();
+    private final MedicalRecordRepository medicalRecordRepository = new MedicalRecordRepository();
 
 
 
@@ -29,8 +29,8 @@ class MedicalRecordRepositoryTest {
                 "John",
                 "Boyd",
                 "03/06/1984",
-                Arrays.asList("aznol:350mg", "hydrapermazol:100mg"),
-                Arrays.asList("nillacilan"));
+                List.of("aznol:350mg", "hydrapermazol:100mg"),
+                List.of("nillacilan"));
 
         assertThrows(IllegalArgumentException.class, () -> medicalRecordRepository.addMedicalRecord(medicalRecord));
     }
@@ -44,8 +44,8 @@ class MedicalRecordRepositoryTest {
                 "Jack",
                 "Mimoun",
                 "03/06/1984",
-                Arrays.asList("aznol:350mg", "hydrapermazol:100mg"),
-                Arrays.asList("nillacilan"));
+                List.of("aznol:350mg", "hydrapermazol:100mg"),
+                List.of("nillacilan"));
         medicalRecordRepository.addMedicalRecord(medicalRecord);
 
         assertEquals(medicalRecord, medicalRecordRepository.findMedicalRecord("Jack", "Mimoun"));
@@ -61,8 +61,8 @@ class MedicalRecordRepositoryTest {
                 "John",
                 "Voight",
                 "03/06/1984",
-                Arrays.asList("aznol:350mg", "hydrapermazol:100mg"),
-                Arrays.asList("nillacilan"));
+                List.of("aznol:350mg", "hydrapermazol:100mg"),
+                List.of("nillacilan"));
 
         assertThrows(IllegalArgumentException.class, () -> medicalRecordRepository.updateMedicalRecord(medicalRecord));
     }
@@ -76,16 +76,16 @@ class MedicalRecordRepositoryTest {
                 "John",
                 "Petrucci",
                 "03/06/1984",
-                Arrays.asList("aznol:350mg", "hydrapermazol:100mg"),
-                Arrays.asList("nillacilan"));
+                List.of("aznol:350mg", "hydrapermazol:100mg"),
+                List.of("nillacilan"));
         medicalRecordRepository.addMedicalRecord(medicalRecord);
 
         MedicalRecord medicalRecordUpdated = new MedicalRecord(
                 "John",
                 "Petrucci",
                 "03/06/1984",
-                Arrays.asList("aznol:350mg", "hydrapermazol:100mg"),
-                Arrays.asList("nillacilan"));
+                List.of("aznol:350mg", "hydrapermazol:100mg"),
+                List.of("nillacilan"));
         medicalRecordRepository.updateMedicalRecord(medicalRecordUpdated);
 
         assertEquals(medicalRecordUpdated, medicalRecordRepository.findMedicalRecord("John", "Petrucci"));
@@ -102,8 +102,8 @@ class MedicalRecordRepositoryTest {
                 "John",
                 "Bonjovi",
                 "03/06/1984",
-                Arrays.asList("aznol:350mg", "hydrapermazol:100mg"),
-                Arrays.asList("nillacilan"));
+                List.of("aznol:350mg", "hydrapermazol:100mg"),
+                List.of("nillacilan"));
 
         assertThrows(IllegalArgumentException.class, () -> medicalRecordRepository.deleteMedicalRecord(medicalRecord));
     }
@@ -117,8 +117,8 @@ class MedicalRecordRepositoryTest {
                 "John",
                 "Bonjovi",
                 "03/06/1984",
-                Arrays.asList("aznol:350mg", "hydrapermazol:100mg"),
-                Arrays.asList("nillacilan"));
+                List.of("aznol:350mg", "hydrapermazol:100mg"),
+                List.of("nillacilan"));
 
         medicalRecordRepository.addMedicalRecord(medicalRecord);
         medicalRecordRepository.deleteMedicalRecord(medicalRecord);
@@ -143,8 +143,8 @@ class MedicalRecordRepositoryTest {
                             "John",
                             "Boyd",
                             "03/06/1984",
-                            Arrays.asList("aznol:350mg", "hydrapermazol:100mg"),
-                            Arrays.asList("nillacilan"));
+                            List.of("aznol:350mg", "hydrapermazol:100mg"),
+                            List.of("nillacilan"));
 
         MedicalRecord expected = medicalRecordRepository.findMedicalRecord("John", "Boyd");
 
@@ -178,7 +178,7 @@ class MedicalRecordRepositoryTest {
     @DisplayName("Should return the allergies when the first name and last name are correct")
     void findAllergiesByNameWhenFirstNameAndLastNameAreCorrectThenReturnTheAllergies() {
 
-        List<String> expectedAllergies = Arrays.asList("nillacilan");
+        List<String> expectedAllergies = List.of("nillacilan");
 
         List<String> actualAllergies = medicalRecordRepository.findAllergiesByName("John", "Boyd");
 

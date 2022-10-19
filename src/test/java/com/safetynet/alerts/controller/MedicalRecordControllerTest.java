@@ -1,87 +1,83 @@
 package com.safetynet.alerts.controller;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.safetynet.alerts.model.MedicalRecord;
 import com.safetynet.alerts.service.MedicalRecordService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.MediaType;
+import org.springframework.test.web.servlet.MockMvc;
 
-import java.rmi.ServerException;
-import java.util.Arrays;
+import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@ExtendWith(MockitoExtension.class)
+@WebMvcTest(controllers = MedicalRecordController.class)
 class MedicalRecordControllerTest {
 
-    @Mock
+
+    @Autowired
+    private MockMvc mockMvc;
+
+
+    @MockBean
     private MedicalRecordService medicalRecordService;
 
-    @InjectMocks
-    private MedicalRecordController medicalRecordController;
+
+    MedicalRecord medicalRecord = new MedicalRecord("any", "any", "any", List.of("any"),List.of("any"));
 
 
-//    @Test
-//    @DisplayName("Should return a 500 status code when the medical record is null")
-//    void addMedicalRecordWhenNullThenReturn500() throws ServerException {
-//        MedicalRecord medicalRecord = null;
-//        when(medicalRecordService.addMedicalRecord(medicalRecord)).thenReturn(null);
-//        assertEquals(
-//                HttpStatus.INTERNAL_SERVER_ERROR,
-//                medicalRecordController.addMedicalRecord(medicalRecord).getStatusCode());
-//    }
+    public static String asJsonString(final Object obj) {
+        try {
+            final ObjectMapper mapper = new ObjectMapper();
+            return mapper.writeValueAsString(obj);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+
 
     @Test
-    @DisplayName("Should return a 201 status code when the medical record is created")
-    void addMedicalRecordWhenCreatedThenReturn201() throws ServerException {
-        MedicalRecord medicalRecord =
-                new MedicalRecord(
-                        "John",
-                        "Boyd",
-                        "03/06/1984",
-                        Arrays.asList("aznol:350mg", "hydrapermazol:100mg"),
-                        Arrays.asList("nillacilan"));
+    @DisplayName("addMedicalRecordTest should return 201 object created")
+    public void addMedicalRecordTest() throws Exception {
+
         when(medicalRecordService.addMedicalRecord(medicalRecord)).thenReturn(medicalRecord);
-        ResponseEntity<MedicalRecord> responseEntity =
-                medicalRecordController.addMedicalRecord(medicalRecord);
-        assertEquals(HttpStatus.CREATED, responseEntity.getStatusCode());
+
+        mockMvc.perform(post("/medicalRecord")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(asJsonString(medicalRecord)))
+                .andExpect(status().isCreated())
+                .andReturn();
     }
+
 
     @Test
-    @DisplayName("Should update the medical record")
-    void updateMedicalRecord() {
-        MedicalRecord medicalRecord =
-                new MedicalRecord(
-                        "John",
-                        "Boyd",
-                        "03/06/1984",
-                        Arrays.asList("aznol:350mg", "hydrapermazol:100mg"),
-                        Arrays.asList("nillacilan"));
+    @DisplayName("updateMedicalRecordTest should return 204 no content")
+    public void updateMedicalRecordTest() throws Exception {
 
-        medicalRecordController.updateMedicalRecord(medicalRecord);
-
-        verify(medicalRecordService, times(1)).updateMedicalRecord(medicalRecord);
+        mockMvc.perform(put("/medicalRecord")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(asJsonString(medicalRecord)))
+                .andExpect(status().isNoContent());
     }
+
+
 
     @Test
-    @DisplayName("Should delete the medical record")
-    void deleteMedicalRecord() {
-        MedicalRecord medicalRecord =
-                new MedicalRecord(
-                        "John",
-                        "Doe",
-                        "01/01/2000",
-                        Arrays.asList("medication1", "medication2"),
-                        Arrays.asList("allergy1", "allergy2"));
+    @DisplayName("deleteMedicalRecordTest should return 204 no content")
+    public void deleteMedicalRecordTest() throws Exception {
 
-        medicalRecordController.deleteMedicalRecord(medicalRecord);
-
-        verify(medicalRecordService, times(1)).deleteMedicalRecord(medicalRecord);
+        mockMvc.perform(delete("/medicalRecord")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(asJsonString(medicalRecord)))
+                .andExpect(status().isNoContent());
     }
+
+
 }

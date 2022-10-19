@@ -116,7 +116,7 @@ public class FireStationRepository {
 
     /**
      * find a fire station number using his address
-     * @param address
+     * @param address address
      * @return station number
      */
     public Integer findFireStationNumberByAddress(String address) {

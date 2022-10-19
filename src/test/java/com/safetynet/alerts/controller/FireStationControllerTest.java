@@ -1,71 +1,79 @@
 package com.safetynet.alerts.controller;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.safetynet.alerts.model.FireStation;
 import com.safetynet.alerts.service.FireStationService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.MediaType;
+import org.springframework.test.web.servlet.MockMvc;
 
-import java.rmi.ServerException;
+import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.*;
-
-@ExtendWith(MockitoExtension.class)
+@WebMvcTest(controllers = FireStationController.class)
 public class FireStationControllerTest {
 
 
+    @Autowired
+    private MockMvc mockMvc;
 
-    @Mock
+    @MockBean
     private FireStationService fireStationService;
 
-    @InjectMocks
-    private FireStationController fireStationController;
+
+    FireStation fireStation = new FireStation("any", 1);
 
 
-//    @Test
-//    @DisplayName("Should return a 500 status code when the FireStation is null")
-//    void addFireStationWhenNullThenReturn500() throws ServerException {
-//        FireStation fireStation = null;
-//        when(fireStationService.addFireStation(fireStation)).thenReturn(null);
-//        assertEquals(
-//                HttpStatus.INTERNAL_SERVER_ERROR,
-//                fireStationController.addFireStation(fireStation).getStatusCode());
-//    }
+    public static String asJsonString(final Object obj) {
+        try {
+            final ObjectMapper mapper = new ObjectMapper();
+            return mapper.writeValueAsString(obj);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+
 
     @Test
-    @DisplayName("Should return a 201 status code when the FireStation is created")
-    void addFireStationWhenCreatedThenReturn201() throws ServerException {
-        FireStation fireStation = new FireStation("135 Test St", 21);
+    @DisplayName("addFireStationTest should return 201 object created")
+    public void addFireStationTest() throws Exception {
+
         when(fireStationService.addFireStation(fireStation)).thenReturn(fireStation);
-        ResponseEntity<FireStation> responseEntity =
-                fireStationController.addFireStation(fireStation);
-        assertEquals(HttpStatus.CREATED, responseEntity.getStatusCode());
+
+        mockMvc.perform(post("/firestation")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(asJsonString(fireStation)))
+                .andExpect(status().isCreated())
+                .andReturn();
     }
 
+
     @Test
-    @DisplayName("Should update the FireStation")
-    void updateFireStation() {
-        FireStation fireStation = new FireStation("135 Test St", 21);
+    @DisplayName("updateFireStationTest should return 204 no content")
+    public void updateFireStationTest() throws Exception {
 
-        fireStationController.updateFireStation(fireStation);
-
-        verify(fireStationService, times(1)).updateFireStation(fireStation);
+        mockMvc.perform(put("/firestation")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(asJsonString(fireStation)))
+                .andExpect(status().isNoContent());
     }
 
+
+
     @Test
-    @DisplayName("Should delete the FireStation")
-    void deleteFireStation() {
-        FireStation fireStation = new FireStation("135 Test St", 21);
+    @DisplayName("deleteFireStationTest should return 204 no content")
+    public void deleteFireStationTest() throws Exception {
 
-        fireStationController.deleteFireStation(fireStation);
-
-        verify(fireStationService, times(1)).deleteFireStation(fireStation);
+        mockMvc.perform(delete("/firestation")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(asJsonString(fireStation)))
+                .andExpect(status().isNoContent());
     }
 }
 
