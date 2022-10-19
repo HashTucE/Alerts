@@ -20,7 +20,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 class PersonServiceImplTest {
@@ -39,6 +39,45 @@ class PersonServiceImplTest {
 
     @InjectMocks
     PersonServiceImpl personService;
+
+
+
+
+    private final Person person = new Person("any", "any", "any", "any", "any", "any", "any");
+
+
+
+    @Test
+    @DisplayName("Should add the person")
+    void addPersonTest() {
+
+        personService.addPerson(person);
+
+        verify(personRepository, times(1)).addPerson(person);
+    }
+
+
+    @Test
+    @DisplayName("Should update the person")
+    void updatePersonTest() {
+
+        personService.updatePerson(person);
+
+        verify(personRepository, times(1)).updatePerson(person);
+    }
+
+
+    @Test
+    @DisplayName("Should delete the person")
+    void deletePersonTest() {
+
+        personService.deletePerson(person);
+
+        verify(personRepository, times(1)).deletePerson(person);
+    }
+
+
+
 
 
 
@@ -306,7 +345,7 @@ class PersonServiceImplTest {
 
 
     @Test
-    @DisplayName("Return an emails list when the city is found")
+    @DisplayName("Should return an emails list when the city is found")
     void findAllEmailsByCityWhenFoundThenReturnEmailsList() {
 
         when(personRepository.loadPersonsList()).thenReturn(
