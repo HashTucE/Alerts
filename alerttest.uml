@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>/Users/hashtuce/Library/Mobile Documents/com~apple~CloudDocs/Projets/Projet 5/Application/alerts/src/main/java/com/safetynet/alerts</OriginalElement>
+  <nodes>
+    <node x="-553.5979020979022" y="719.791958041958">com.safetynet.alerts.dto.PersonHealth</node>
+    <node x="903.2975982905965" y="-139.94055944055935">com.safetynet.alerts.util.DataWriter</node>
+    <node x="2.5804195804197434" y="318.9895104895104">com.safetynet.alerts.service.PersonServiceImpl</node>
+    <node x="938.3881118881121" y="783.1258741258739">com.safetynet.alerts.dto.Resident</node>
+    <node x="411.0372960372964" y="-117.44055944055935">com.safetynet.alerts.repository.PersonRepository</node>
+    <node x="538.2832167832167" y="893.1258741258739">com.safetynet.alerts.dto.ChildByFamily</node>
+    <node x="1007.999999999999" y="-850.7770046620043">com.safetynet.alerts.model.FireStation</node>
+    <node x="-210.7803030303029" y="-96.63772338772336">com.safetynet.alerts.service.PersonService</node>
+    <node x="418.5489510489509" y="1226.111888111888">com.safetynet.alerts.dto.PersonAge</node>
+    <node x="780.2976891996867" y="-599.0815850815849">com.safetynet.alerts.dto.DataBase</node>
+    <node x="-67.42657342657333" y="954.4195804195801">com.safetynet.alerts.dto.FireCoverageByStation</node>
+    <node x="-625.5979020979022" y="-62.84265734265722">com.safetynet.alerts.dto.PersonInfo</node>
+    <node x="861.0034965034966" y="485.2237762237761">com.safetynet.alerts.dto.FloodCoverage</node>
+    <node x="-490.05244755244746" y="1098.013986013986">com.safetynet.alerts.dto.PersonContact</node>
+    <node x="-452.75594912201393" y="-532.2552447552443">com.safetynet.alerts.controller.PersonController</node>
+    <node x="174.58041958041974" y="-874.1550116550114">com.safetynet.alerts.model.Person</node>
+    <node x="-625.5979020979022" y="429.5699300699299">com.safetynet.alerts.dto.FireCoverageByAddress</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="com.safetynet.alerts.service.PersonServiceImpl" target="com.safetynet.alerts.dto.PersonInfo" relationship="CREATE">
+      <point x="-212.5" y="-120.91958041958048" />
+      <point x="-516.5979020979022" y="412.0699300699299" />
+      <point x="0.0" y="137.0" />
+    </edge>
+    <edge source="com.safetynet.alerts.util.DataWriter" target="com.safetynet.alerts.repository.PersonRepository" relationship="TO_ONE">
+      <point x="-182.4999999999999" y="15.000223776223379" />
+      <point x="126.5" y="15.000223776223379" />
+    </edge>
+    <edge source="com.safetynet.alerts.service.PersonServiceImpl" target="com.safetynet.alerts.dto.FireCoverageByAddress" relationship="CREATE">
+      <point x="-212.5" y="-21.419580419580484" />
+      <point x="145.0" y="0.0" />
+    </edge>
+    <edge source="com.safetynet.alerts.repository.PersonRepository" target="com.safetynet.alerts.util.DataWriter" relationship="TO_ONE">
+      <point x="126.5" y="-29.99977622377662" />
+      <point x="-182.4999999999999" y="-29.99977622377662" />
+    </edge>
+    <edge source="com.safetynet.alerts.service.PersonServiceImpl" target="com.safetynet.alerts.dto.FloodCoverage" relationship="CREATE">
+      <point x="212.5" y="34.234265734265705" />
+      <point x="-109.0" y="0.0" />
+    </edge>
+    <edge source="com.safetynet.alerts.dto.DataBase" target="com.safetynet.alerts.model.Person" relationship="TO_MANY">
+      <point x="3.108003132865633E-4" y="92.99958508158488" />
+      <point x="918.298" y="-283.0" />
+      <point x="283.58" y="-283.0" />
+      <point x="-4.1958041975931337E-4" y="137.00001165501146" />
+    </edge>
+    <edge source="com.safetynet.alerts.dto.DataBase" target="com.safetynet.alerts.model.FireStation" relationship="TO_MANY">
+      <point x="138.0003108003133" y="-4.149184151174268E-4" />
+      <point x="1079.0" y="-506.082" />
+      <point x="1079.0" y="-641.0" />
+      <point x="1117.0" y="-641.0" />
+      <point x="9.094947017729282E-13" y="82.00000466200424" />
+    </edge>
+    <edge source="com.safetynet.alerts.service.PersonServiceImpl" target="com.safetynet.alerts.repository.PersonRepository" relationship="TO_ONE">
+      <point x="212.49958041958024" y="-14.999510489510385" />
+      <point x="467.0" y="517.99" />
+      <point x="467.0" y="-17.940335664335976" />
+      <point x="126.49958041958024" y="-14.999776223776621" />
+    </edge>
+    <edge source="com.safetynet.alerts.service.PersonServiceImpl" target="com.safetynet.alerts.service.PersonService" relationship="REALIZATION">
+      <point x="-205.0" y="-214.0" />
+      <point x="8.360722610722632" y="125.5" />
+    </edge>
+    <edge source="com.safetynet.alerts.service.PersonServiceImpl" target="com.safetynet.alerts.dto.PersonHealth" relationship="CREATE">
+      <point x="-212.5" y="206.5" />
+      <point x="109.0" y="-106.30244755244757" />
+    </edge>
+    <edge source="com.safetynet.alerts.service.PersonServiceImpl" target="com.safetynet.alerts.dto.Resident" relationship="CREATE">
+      <point x="212.5" y="133.7342657342657" />
+      <point x="1047.3881118881122" y="666.7237762237761" />
+      <point x="0.0" y="-137.0" />
+    </edge>
+    <edge source="com.safetynet.alerts.util.DataWriter" target="com.safetynet.alerts.model.Person" relationship="TO_MANY">
+      <point x="4.017094036044E-4" y="-137.00044055944065" />
+      <point x="1085.798" y="-283.0" />
+      <point x="283.58" y="-283.0" />
+      <point x="-4.1958041975931337E-4" y="137.00001165501146" />
+    </edge>
+    <edge source="com.safetynet.alerts.service.PersonServiceImpl" target="com.safetynet.alerts.dto.FireCoverageByStation" relationship="CREATE">
+      <point x="-132.00699300699307" y="214.0" />
+      <point x="0.0" y="-93.0" />
+    </edge>
+    <edge source="com.safetynet.alerts.repository.PersonRepository" target="com.safetynet.alerts.model.Person" relationship="CREATE">
+      <point x="-126.5" y="0.0" />
+      <point x="298.58" y="-2.9405594405593547" />
+      <point x="14.99958041958024" y="137.0" />
+    </edge>
+    <edge source="com.safetynet.alerts.service.PersonServiceImpl" target="com.safetynet.alerts.dto.ChildByFamily" relationship="CREATE">
+      <point x="212.5" y="148.7342657342657" />
+      <point x="647.2832167832167" y="681.7237762237761" />
+      <point x="0.0" y="-82.0" />
+    </edge>
+    <edge source="com.safetynet.alerts.dto.FloodCoverage" target="com.safetynet.alerts.dto.Resident" relationship="TO_MANY">
+      <point x="92.38461538461559" y="82.0" />
+      <point x="15.0" y="-137.0" />
+    </edge>
+    <edge source="com.safetynet.alerts.dto.FireCoverageByAddress" target="com.safetynet.alerts.dto.PersonHealth" relationship="TO_MANY">
+      <point x="36.0" y="82.0" />
+      <point x="0.0" y="-126.0" />
+    </edge>
+    <edge source="com.safetynet.alerts.repository.PersonRepository" target="com.safetynet.alerts.util.DataWriter" relationship="CREATE">
+      <point x="126.5" y="30.00022377622338" />
+      <point x="-182.4999999999999" y="30.00022377622338" />
+    </edge>
+    <edge source="com.safetynet.alerts.util.DataWriter" target="com.safetynet.alerts.repository.PersonRepository" relationship="CREATE">
+      <point x="-182.4999999999999" y="-44.99977622377662" />
+      <point x="126.5" y="-44.99977622377662" />
+    </edge>
+    <edge source="com.safetynet.alerts.controller.PersonController" target="com.safetynet.alerts.service.PersonService" relationship="TO_ONE">
+      <point x="184.97564609171104" y="125.5" />
+      <point x="0.0" y="-125.5" />
+    </edge>
+    <edge source="com.safetynet.alerts.service.PersonServiceImpl" target="com.safetynet.alerts.repository.PersonRepository" relationship="CREATE">
+      <point x="212.49958041958024" y="4.89510489614986E-4" />
+      <point x="505.0" y="532.99" />
+      <point x="505.0" y="-2.9403356643359757" />
+      <point x="126.49958041958024" y="2.2377622337899084E-4" />
+    </edge>
+    <edge source="com.safetynet.alerts.service.PersonServiceImpl" target="com.safetynet.alerts.dto.PersonContact" relationship="CREATE">
+      <point x="35.99300699300693" y="214.0" />
+      <point x="251.07342657342667" y="1202.013986013986" />
+      <point x="109.0" y="0.0" />
+    </edge>
+    <edge source="com.safetynet.alerts.util.DataWriter" target="com.safetynet.alerts.model.FireStation" relationship="TO_MANY">
+      <point x="30.000401709403604" y="-137.00044055944065" />
+      <point x="1115.798" y="-641.0" />
+      <point x="1117.0" y="-641.0" />
+      <point x="9.094947017729282E-13" y="82.00000466200424" />
+    </edge>
+    <edge source="com.safetynet.alerts.dto.FireCoverageByStation" target="com.safetynet.alerts.dto.PersonContact" relationship="TO_MANY">
+      <point x="-150.5" y="58.09440559440577" />
+      <point x="109.0" y="-96.5" />
+    </edge>
+    <edge source="com.safetynet.alerts.util.DataWriter" target="com.safetynet.alerts.dto.DataBase" relationship="CREATE">
+      <point x="-152.4995982905964" y="-137.0" />
+      <point x="15.000310800313287" y="93.0" />
+    </edge>
+    <edge source="com.safetynet.alerts.service.PersonServiceImpl" target="com.safetynet.alerts.dto.PersonAge" relationship="CREATE">
+      <point x="205.0" y="214.0" />
+      <point x="-107.46853146853118" y="-93.0" />
+    </edge>
+    <edge source="com.safetynet.alerts.dto.ChildByFamily" target="com.safetynet.alerts.dto.PersonAge" relationship="TO_MANY">
+      <point x="-101.5" y="82.0" />
+      <point x="18.23426573426582" y="-93.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic" zoom="0.5074921135646687" showDependencies="true" x="221.85236985236634" y="-116.7777777777776" />
+  <SelectedNodes>
+    <node>com.safetynet.alerts.model.FireStation</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>Methods</Category>
+    <Category>Properties</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

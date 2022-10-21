@@ -35,7 +35,7 @@ public class FireStationController {
             log.error(Log.OBJECT_NULL);
             throw new ServerException("firestation is null");
         } else {
-            log.debug(Log.OBJECT_CREATED);
+            log.info(Log.OBJECT_CREATED);
             return new ResponseEntity<>(newFireStation, HttpStatus.CREATED);
         }
     }
@@ -46,7 +46,7 @@ public class FireStationController {
     @PutMapping("/firestation")
     public ResponseEntity<Void> updateFireStation(@RequestBody FireStation fireStation) {
         fireStationService.updateFireStation(fireStation);
-        log.debug(Log.OBJECT_MODIFIED);
+        log.info(Log.OBJECT_MODIFIED);
         return ResponseEntity.noContent().build();
     }
 
@@ -56,7 +56,7 @@ public class FireStationController {
     @DeleteMapping("/firestation")
     public ResponseEntity<Void> deleteFireStation(@RequestBody FireStation fireStation) {
         fireStationService.deleteFireStation(fireStation);
-        log.debug(Log.OBJECT_MODIFIED);
+        log.info(Log.OBJECT_MODIFIED);
         return ResponseEntity.noContent().build();
     }
 }

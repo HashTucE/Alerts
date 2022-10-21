@@ -32,7 +32,7 @@ public class MedicalRecordController {
             log.error(Log.OBJECT_NULL);
             throw new ServerException("medical record is null");
         } else {
-            log.debug(Log.OBJECT_CREATED);
+            log.info(Log.OBJECT_CREATED);
             return new ResponseEntity<>(newMedicalRecord, HttpStatus.CREATED);
         }
     }
@@ -41,7 +41,7 @@ public class MedicalRecordController {
     @PutMapping("/medicalRecord")
     public ResponseEntity<Void> updateMedicalRecord(@RequestBody MedicalRecord medicalRecord) {
         medicalRecordService.updateMedicalRecord(medicalRecord);
-        log.debug(Log.OBJECT_MODIFIED);
+        log.info(Log.OBJECT_MODIFIED);
         return ResponseEntity.noContent().build();
     }
 
@@ -49,7 +49,7 @@ public class MedicalRecordController {
     @DeleteMapping("/medicalRecord")
     public ResponseEntity<Void> deleteMedicalRecord(@RequestBody MedicalRecord medicalRecord) {
         medicalRecordService.deleteMedicalRecord(medicalRecord);
-        log.debug(Log.OBJECT_MODIFIED);
+        log.info(Log.OBJECT_MODIFIED);
         return ResponseEntity.noContent().build();
     }
 }

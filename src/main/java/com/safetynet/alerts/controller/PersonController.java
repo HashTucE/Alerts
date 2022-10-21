@@ -34,7 +34,7 @@ public class PersonController {
             log.error(Log.OBJECT_NULL);
             throw new ServerException("person is null");
         } else {
-            log.debug(Log.OBJECT_CREATED);
+            log.info(Log.OBJECT_CREATED);
             return new ResponseEntity<>(newPerson, HttpStatus.CREATED);
         }
     }
@@ -44,7 +44,7 @@ public class PersonController {
     @PutMapping("/person")
     public ResponseEntity<Void> updatePerson(@RequestBody Person person) {
         personService.updatePerson(person);
-        log.debug(Log.OBJECT_MODIFIED);
+        log.info(Log.OBJECT_MODIFIED);
         return ResponseEntity.noContent().build();
     }
 
@@ -53,7 +53,7 @@ public class PersonController {
     @DeleteMapping("/person")
     public ResponseEntity<Void> deletePerson(@RequestBody Person person) {
         personService.deletePerson(person);
-        log.debug(Log.OBJECT_MODIFIED);
+        log.info(Log.OBJECT_MODIFIED);
         return ResponseEntity.noContent().build();
     }
 
@@ -66,10 +66,10 @@ public class PersonController {
     public ResponseEntity<FireCoverageByStation> getCoverageListFromStation(@RequestParam Integer stationNumber) {
         FireCoverageByStation fireCoverageByStation = personService.getCoverageListFromStation(stationNumber);
         if (fireCoverageByStation.getPersonContactList().isEmpty()) {
-            log.error("Object not founded. Returning status 404 (Not Found).");
+            log.error(Log.OBJECT_NOT_FOUND);
             return ResponseEntity.notFound().build();
         }
-        log.debug("Object founded successfully. Returning status 200 (Ok).");
+        log.info(Log.OBJECT_FOUND);
         return new ResponseEntity<>(fireCoverageByStation, HttpStatus.OK);
 
     }
@@ -80,10 +80,10 @@ public class PersonController {
     public ResponseEntity<ChildByFamily> getChildrenListByAddress(@RequestParam String address) {
         ChildByFamily childByFamily = personService.getChildrenListByAddress(address);
         if (childByFamily.getChildren().isEmpty()) {
-            log.error("Object not founded. Returning status 404 (Not Found).");
+            log.error(Log.OBJECT_NOT_FOUND);
             return ResponseEntity.notFound().build();
         }
-        log.debug("Object founded successfully. Returning status 200 (Ok).");
+        log.info(Log.OBJECT_FOUND);
         return new ResponseEntity<>(childByFamily, HttpStatus.OK);
     }
 
@@ -93,10 +93,10 @@ public class PersonController {
     public ResponseEntity<List<String>> getPhoneListFromStation(@RequestParam Integer firestation) {
         List<String> phoneList = personService.getPhoneListFromStation(firestation);
         if (phoneList.isEmpty()) {
-            log.error("Object not founded. Returning status 404 (Not Found).");
+            log.error(Log.OBJECT_NOT_FOUND);
             return ResponseEntity.notFound().build();
         }
-        log.debug("Object founded successfully. Returning status 200 (Ok).");
+        log.info(Log.OBJECT_FOUND);
         return new ResponseEntity<>(phoneList, HttpStatus.OK);
     }
 
@@ -106,10 +106,10 @@ public class PersonController {
     public ResponseEntity<FireCoverageByAddress> getInhabitantsByAddress(@RequestParam String address) {
         FireCoverageByAddress fireCoverageByAddress = personService.getInhabitantsByAddress(address);
         if (fireCoverageByAddress.getPersonsHealthList().isEmpty()) {
-            log.error("Object not founded. Returning status 404 (Not Found).");
+            log.error(Log.OBJECT_NOT_FOUND);
             return ResponseEntity.notFound().build();
         }
-        log.debug("Object founded successfully. Returning status 200 (Ok).");
+        log.info(Log.OBJECT_FOUND);
         return new ResponseEntity<>(fireCoverageByAddress, HttpStatus.OK);
     }
 
@@ -119,10 +119,10 @@ public class PersonController {
     public ResponseEntity<List<FloodCoverage>> getInhabitantsByStation(@RequestParam List<Integer> stations) {
         List<FloodCoverage> inhabitantsList = personService.getInhabitantsByStation(stations);
         if (inhabitantsList.isEmpty()) {
-            log.error("Object not founded. Returning status 404 (Not Found).");
+            log.error(Log.OBJECT_NOT_FOUND);
             return ResponseEntity.notFound().build();
         }
-        log.debug("Object founded successfully. Returning status 200 (Ok).");
+        log.info(Log.OBJECT_FOUND);
         return new ResponseEntity<>(inhabitantsList, HttpStatus.OK);
     }
 
@@ -132,10 +132,10 @@ public class PersonController {
     public ResponseEntity<List<PersonInfo>> findPersonInfoByName(@RequestParam String firstName, @RequestParam String lastName) {
         List<PersonInfo> personInfoList = personService.findPersonInfoByName(firstName, lastName);
         if (personInfoList.isEmpty()) {
-            log.error("Object not founded. Returning status 404 (Not Found).");
+            log.error(Log.OBJECT_NOT_FOUND);
             return ResponseEntity.notFound().build();
         }
-        log.debug("Object founded successfully. Returning status 200 (Ok).");
+        log.info(Log.OBJECT_FOUND);
         return new ResponseEntity<>(personInfoList, HttpStatus.OK);
     }
 
@@ -145,10 +145,10 @@ public class PersonController {
     public ResponseEntity<List<String>> findAllEmailsByCity(@RequestParam String city) {
         List<String> emailsList = personService.findAllEmailsByCity(city);
         if (emailsList.isEmpty()) {
-            log.error("Object not founded. Returning status 404 (Not Found).");
+            log.error(Log.OBJECT_NOT_FOUND);
             return ResponseEntity.notFound().build();
         }
-        log.debug("Object founded successfully. Returning status 200 (Ok).");
+        log.info(Log.OBJECT_FOUND);
         return new ResponseEntity<>(emailsList, HttpStatus.OK);
     }
 }
