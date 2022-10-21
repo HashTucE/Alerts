@@ -18,12 +18,4 @@ class DataReaderTest {
         Any any = dataReader.jsonReader();
         assertNotNull(any);
     }
-
-//    @Test
-//    @DisplayName("Should throw an exception when the file is not loaded")
-//    void jsonReaderWhenFileIsNotLoadedThenThrowException() {
-//        DataReader dataReader = mock(DataReader.class);
-//        when(dataReader.jsonReader()).thenThrow(IOException.class);
-//        assertThrows(IOException.class, () -> dataReader.jsonReader());
-//    }
 }
