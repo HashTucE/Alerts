@@ -25,6 +25,12 @@ public class MedicalRecordController {
     //POST, PUT, DELETE CONTROLLERS//
 
 
+    /**
+     * Create a medicalRecord
+     * @param medicalRecord
+     * @return medicalRecord with HTTP code 201 created
+     * @throws ServerException
+     */
     @PostMapping("/medicalRecord")
     public ResponseEntity<MedicalRecord> addMedicalRecord(@RequestBody MedicalRecord medicalRecord) throws ServerException {
         MedicalRecord newMedicalRecord = medicalRecordService.addMedicalRecord(medicalRecord);
@@ -38,6 +44,11 @@ public class MedicalRecordController {
     }
 
 
+    /**
+     * update the medicalRecord
+     * @param medicalRecord
+     * @return HTTP code 204 no content
+     */
     @PutMapping("/medicalRecord")
     public ResponseEntity<Void> updateMedicalRecord(@RequestBody MedicalRecord medicalRecord) {
         medicalRecordService.updateMedicalRecord(medicalRecord);
@@ -46,6 +57,11 @@ public class MedicalRecordController {
     }
 
 
+    /**
+     * Delete the medicalRecord
+     * @param medicalRecord
+     * @return HTTP code 204 no content
+     */
     @DeleteMapping("/medicalRecord")
     public ResponseEntity<Void> deleteMedicalRecord(@RequestBody MedicalRecord medicalRecord) {
         medicalRecordService.deleteMedicalRecord(medicalRecord);

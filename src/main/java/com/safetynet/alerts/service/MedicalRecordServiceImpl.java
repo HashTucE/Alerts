@@ -18,6 +18,11 @@ public class MedicalRecordServiceImpl implements MedicalRecordService {
 
 
 
+    /**
+     * Create a medicalRecord
+     * @param medicalRecord
+     * @return medicalRecord
+     */
     @Override
     public MedicalRecord addMedicalRecord(MedicalRecord medicalRecord) {
         log.debug("addMedicalRecord() from repository called");
@@ -25,12 +30,22 @@ public class MedicalRecordServiceImpl implements MedicalRecordService {
         return medicalRecord;
     }
 
+
+    /**
+     * Update a medicalRecord
+     * @param medicalRecord
+     */
     @Override
     public void updateMedicalRecord(MedicalRecord medicalRecord) {
         log.debug("updateMedicalRecord() from repository called");
         medicalRecordRepository.updateMedicalRecord(medicalRecord);
     }
 
+
+    /**
+     * Delete a medicalRecord
+     * @param medicalRecord
+     */
     @Override
     public void deleteMedicalRecord(MedicalRecord medicalRecord) {
         log.debug("deleteMedicalRecord() from repository called");

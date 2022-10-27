@@ -18,6 +18,11 @@ public class FireStationServiceImpl implements FireStationService {
 
 
 
+    /**
+     * Create a firestation
+     * @param fireStation
+     * @return firestation
+     */
     @Override
     public FireStation addFireStation(FireStation fireStation) {
         log.debug("addFireStation() from repository called");
@@ -25,12 +30,22 @@ public class FireStationServiceImpl implements FireStationService {
         return fireStation;
     }
 
+
+    /**
+     * Update a firestation
+     * @param fireStation
+     */
     @Override
     public void updateFireStation(FireStation fireStation) {
         log.debug("updateFireStation() from repository called");
         fireStationRepository.updateFireStation(fireStation);
     }
 
+
+    /**
+     * Delete a firestation
+     * @param fireStation
+     */
     @Override
     public void deleteFireStation(FireStation fireStation) {
         log.debug("deleteFireStation() from repository called");

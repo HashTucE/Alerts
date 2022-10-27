@@ -27,7 +27,7 @@ public class FireStationController {
 
 
     /**
-     * Add a mapping fire station/address
+     * Create a mapping fire station/address
      * @param fireStation
      * @return firestation with HTTP code 201 created
      * @throws ServerException
