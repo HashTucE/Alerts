@@ -19,7 +19,11 @@ public class AgeCalculator {
     private static final Logger log = LogManager.getLogger(PersonServiceImpl.class);
 
 
-
+    /**
+     * Calculate the age from a birthdate
+     * @param birthdate
+     * @return age
+     */
     public short calculateAgeFromBirthdate(final String birthdate) {
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
@@ -32,6 +36,12 @@ public class AgeCalculator {
     }
 
 
+    /**
+     * Calculate the age from a name
+     * @param firstName
+     * @param lastName
+     * @return age
+     */
     public short calculateAgeFromName(String firstName, String lastName) {
 
         MedicalRecordRepository medicalRecordRepository = new MedicalRecordRepository();

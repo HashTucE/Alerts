@@ -37,7 +37,9 @@ public class DataWriter {
     List<MedicalRecord> medicalRecordList = medicalRecordRepository.loadMedicalRecordsList();
 
 
-
+    /**
+     * Write a json file
+     */
     public void jsonWriter() {
 
 

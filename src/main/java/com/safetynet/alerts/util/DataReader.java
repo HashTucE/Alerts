@@ -17,8 +17,12 @@ import java.nio.file.Files;
 public class DataReader {
 
     private static final Logger log = LogManager.getLogger(DataReader.class);
-    
 
+
+    /**
+     * Read a json file
+     * @return any
+     */
     public static Any jsonReader() {
 
 
