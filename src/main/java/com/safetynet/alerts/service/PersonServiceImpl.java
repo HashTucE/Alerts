@@ -21,16 +21,16 @@ import java.util.stream.Collectors;
 public class PersonServiceImpl implements PersonService {
 
     @Autowired
-    PersonRepository personRepository = new PersonRepository();
+    PersonRepository personRepository;
 
     @Autowired
-    MedicalRecordRepository medicalRecordRepository = new MedicalRecordRepository();
+    MedicalRecordRepository medicalRecordRepository;
 
     @Autowired
-    FireStationRepository fireStationRepository = new FireStationRepository();
+    FireStationRepository fireStationRepository;
 
     @Autowired
-    AgeCalculator ageCalculator = new AgeCalculator();
+    AgeCalculator ageCalculator;
 
     private static final Logger log = LogManager.getLogger(PersonServiceImpl.class);
 

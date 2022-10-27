@@ -25,8 +25,12 @@ public class FireStationController {
     //POST, PUT, DELETE CONTROLLERS//
 
 
-    /*
+
+    /**
      * Add a mapping fire station/address
+     * @param fireStation
+     * @return firestation with HTTP code 201 created
+     * @throws ServerException
      */
     @PostMapping("/firestation")
     public ResponseEntity<FireStation> addFireStation(@RequestBody FireStation fireStation) throws ServerException {
@@ -40,8 +44,11 @@ public class FireStationController {
         }
     }
 
-    /*
+
+    /**
      * update the fire station number of an address
+     * @param fireStation
+     * @return HTTP code 204 no content
      */
     @PutMapping("/firestation")
     public ResponseEntity<Void> updateFireStation(@RequestBody FireStation fireStation) {
@@ -50,8 +57,11 @@ public class FireStationController {
         return ResponseEntity.noContent().build();
     }
 
-    /*
+
+    /**
      * delete the mapping of a fire station or an address
+     * @param fireStation
+     * @return HTTP code 204 no content
      */
     @DeleteMapping("/firestation")
     public ResponseEntity<Void> deleteFireStation(@RequestBody FireStation fireStation) {

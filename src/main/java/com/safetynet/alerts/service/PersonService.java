@@ -8,11 +8,23 @@ import java.util.List;
 public interface PersonService {
 
 
-
+    /**
+     * Create a person
+     * @param person
+     * @return Person
+     */
     Person addPerson(Person person);
 
+    /**
+     * Update a person
+     * @param person
+     */
     void updatePerson(Person person);
 
+    /**
+     * Delete a person
+     * @param person
+     */
     void deletePerson(Person person);
 
 

@@ -27,6 +27,12 @@ public class PersonController {
     //POST, PUT, DELETE CONTROLLERS//
 
 
+    /**
+     * Create a person
+     * @param person
+     * @return Person with HTTP code 201 created
+     * @throws ServerException
+     */
     @PostMapping("/person")
     public ResponseEntity<Person> addPerson(@RequestBody Person person) throws ServerException {
         Person newPerson = personService.addPerson(person);
@@ -40,7 +46,11 @@ public class PersonController {
     }
 
 
-
+    /**
+     * Update a person
+     * @param person
+     * @return HTTP code 204 no content
+     */
     @PutMapping("/person")
     public ResponseEntity<Void> updatePerson(@RequestBody Person person) {
         personService.updatePerson(person);
@@ -49,7 +59,11 @@ public class PersonController {
     }
 
 
-
+    /**
+     * Delete a person
+     * @param person
+     * @return HTTP code 204 no content
+     */
     @DeleteMapping("/person")
     public ResponseEntity<Void> deletePerson(@RequestBody Person person) {
         personService.deletePerson(person);
@@ -62,6 +76,11 @@ public class PersonController {
     //SPECIFIC CONTROLLERS//
 
 
+    /**
+     * get a json of fireCoverageByStation
+     * @param stationNumber
+     * @return fireCoverageByStation with HTTP code 200 ok
+     */
     @GetMapping("/firestation")
     public ResponseEntity<FireCoverageByStation> getCoverageListFromStation(@RequestParam Integer stationNumber) {
         FireCoverageByStation fireCoverageByStation = personService.getCoverageListFromStation(stationNumber);
@@ -75,7 +94,11 @@ public class PersonController {
     }
 
 
-
+    /**
+     * get a json of childByFamily
+     * @param address
+     * @return childByFamily with HTTP code 200 ok
+     */
     @GetMapping("/childAlert")
     public ResponseEntity<ChildByFamily> getChildrenListByAddress(@RequestParam String address) {
         ChildByFamily childByFamily = personService.getChildrenListByAddress(address);
@@ -88,7 +111,11 @@ public class PersonController {
     }
 
 
-
+    /**
+     * get a json of phoneList
+     * @param firestation
+     * @return phoneList with HTTP code 200 ok
+     */
     @GetMapping("/phoneAlert")
     public ResponseEntity<List<String>> getPhoneListFromStation(@RequestParam Integer firestation) {
         List<String> phoneList = personService.getPhoneListFromStation(firestation);
@@ -101,7 +128,11 @@ public class PersonController {
     }
 
 
-
+    /**
+     * get a json of fireCoverageByAddress
+     * @param address
+     * @return fireCoverageByAddress with HTTP code 200 ok
+     */
     @GetMapping("/fire")
     public ResponseEntity<FireCoverageByAddress> getInhabitantsByAddress(@RequestParam String address) {
         FireCoverageByAddress fireCoverageByAddress = personService.getInhabitantsByAddress(address);
@@ -114,7 +145,11 @@ public class PersonController {
     }
 
 
-
+    /**
+     * get a json of inhabitantsList
+     * @param stations
+     * @return inhabitantsList with HTTP code 200 ok
+     */
     @GetMapping("/flood/stations")
     public ResponseEntity<List<FloodCoverage>> getInhabitantsByStation(@RequestParam List<Integer> stations) {
         List<FloodCoverage> inhabitantsList = personService.getInhabitantsByStation(stations);
@@ -127,7 +162,12 @@ public class PersonController {
     }
 
 
-
+    /**
+     * get a json of personInfo
+     * @param firstName
+     * @param lastName
+     * @return personInfoList with HTTP code 200 ok
+     */
     @GetMapping("/personInfo")
     public ResponseEntity<List<PersonInfo>> findPersonInfoByName(@RequestParam String firstName, @RequestParam String lastName) {
         List<PersonInfo> personInfoList = personService.findPersonInfoByName(firstName, lastName);
@@ -140,7 +180,11 @@ public class PersonController {
     }
 
 
-
+    /**
+     * get a json emailList
+     * @param city
+     * @return emailsList with HTTP code 200 ok
+     */
     @GetMapping("/communityEmail")
     public ResponseEntity<List<String>> findAllEmailsByCity(@RequestParam String city) {
         List<String> emailsList = personService.findAllEmailsByCity(city);

@@ -12,7 +12,7 @@ public class FireStationServiceImpl implements FireStationService {
 
 
     @Autowired
-    FireStationRepository fireStationRepository = new FireStationRepository();
+    FireStationRepository fireStationRepository;
 
     private static final Logger log = LogManager.getLogger(FireStationServiceImpl.class);
 
