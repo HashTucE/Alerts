@@ -5,3 +5,6 @@
 </p>
 
 
+# Use API
+
+Import this HTTP request [collection]() into `Postman` for exemple.
