@@ -8,3 +8,6 @@
 # Use API
 
 Import this HTTP request [collection](https://gist.githubusercontent.com/HashTucE/8f89d2baff367100c6b5cbf59480e3c7/raw/2885d6d0812de8a64e421ac82f7021155fe4719e/collection.json) into `Postman` for exemple.
+
+Télécharge la <a href="https://gist.githubusercontent.com/HashTucE/8f89d2baff367100c6b5cbf59480e3c7/raw/2885d6d0812de8a64e421ac82f7021155fe4719e/collection.json" download="collection.json">collection</a>
+
