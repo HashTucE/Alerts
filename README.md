@@ -7,4 +7,4 @@
 
 # Use API
 
-Import this HTTP request [collection](<script src="https://raw.githubusercontent.com/HashTucE/8f89d2baff367100c6b5cbf59480e3c7.js"></script>) into `Postman` for exemple.
+Import this HTTP request [collection](https://raw.githubusercontent.com/HashTucE/8f89d2baff367100c6b5cbf59480e3c7.js) into `Postman` for exemple.
