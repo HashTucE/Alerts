@@ -37,7 +37,7 @@ Get the list of emails of all the inhabitants of a city
 # Run the API
 
 There is 2 possibilities : 
-- Open the project with your IDE and run the main method of AlertsApplication class.
+- Open the project with your IDE and run the main method of `AlertsApplication` class.
 - Or open a prompt :
     - move to the root of the project you cloned on your local machine
     - enter `mvn clean install` command to compile, test, package and install properly the project
