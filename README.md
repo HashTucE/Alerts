@@ -34,6 +34,20 @@ Get the list of emails of all the inhabitants of a city
 - Develop other endpoints to add, modify or delete objects from the data file
 - Follow an architecture following the `model-view-controller` pattern
 
+# Run the API
+
+There is 2 possibilities : 
+- Open the project with your IDE and run the main method of AlertsApplication class.
+- Or open a prompt :
+    - move to the root of the project you cloned on your local machine
+    - enter `mvn clean install` command to compile, test, package and install properly the project
+    ```
+    It depends on when you will install the app but there are 2 unit tests that can fail as it calculates age from current date.
+    These tests are located to the util package into the AgeCalculatorTest class, test 2 and 4.
+    In that case, you can either comment, delete or correct these test
+    ```
+    - enter `mvn spring-boot:run`command to start the API
+
 # Send request to the API
 
 1. Install [Postman](https://www.postman.com/downloads/)
@@ -44,6 +58,8 @@ Get the list of emails of all the inhabitants of a city
 Now you should be able to access to 2 differents collections :
 - P5 Endpoints will give you the possibility to create, update or delete objects. Check the body section before sending the request.
 - P5 URLs will give you the possibility to get differents informations depending on the params section.
+
+    - For exemple as you can see below, if you replace the parameter firestation by another number between 1 and 4, when you click on the `Send` button, you will get another phone list as json body.
 
 <p align="center">
   <img src=https://user-images.githubusercontent.com/95872501/227168576-d8790adb-d998-451d-8d8d-ac4d655255ea.png>
