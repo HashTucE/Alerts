@@ -41,11 +41,6 @@ There is 2 possibilities :
 - Or open a prompt :
     - move to the root of the project you cloned on your local machine
     - enter `mvn clean install` command to compile, test, package and install properly the project
-    ```
-    It depends on when you will install the app but there are 2 unit tests that can fail as it calculates age from current date.
-    These tests are located to the util package into the AgeCalculatorTest class, test 2 and 4.
-    In that case, you can either comment, delete or correct these test
-    ```
     - enter `mvn spring-boot:run`command to start the API
 
 # Send request to the API
