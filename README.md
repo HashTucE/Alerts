@@ -43,6 +43,8 @@ There is 2 possibilities :
     - enter `mvn clean install` command to compile, test, package and install properly the project
     - enter `mvn spring-boot:run`command to start the API
 
+To interrupt the execution of the running Spring Boot process and stop the server, enter the combination `Ctrl + C`.
+
 # Send request to the API
 
 1. Install [Postman](https://www.postman.com/downloads/)
